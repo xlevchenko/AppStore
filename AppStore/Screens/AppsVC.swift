@@ -13,5 +13,6 @@ class AppsVC: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
