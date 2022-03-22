@@ -13,28 +13,24 @@ class BaseTabBarController: UITabBarController {
         super.viewDidLoad()
         
         UITabBar.appearance().backgroundColor = .secondarySystemBackground
-        viewControllers = [createTodayNC(), createAppsNC(), createSearchVC()]
+        viewControllers = [
+            createVC(viewController: TodayVC(), title: "Today", image: SFSymbols.today!),
+            createVC(viewController: AppsVC(), title: "Apps", image: SFSymbols.apps!),
+            createVC(viewController: SearchVC(), title: "Search", image: SFSymbols.search!)
+        ]
     }
    
-    func createTodayNC() -> UINavigationController {
-        let todayVC                     = TodayVC()
-        todayVC.tabBarItem              = UITabBarItem(title: "Today", image: SFSymbols.today, tag: 0)
-        todayVC.navigationItem.title    = "Today"
-        return UINavigationController(rootViewController: todayVC)
-    }
     
-    func createAppsNC() -> UINavigationController {
-        let appsVC                      = AppsVC()
-        appsVC.tabBarItem               = UITabBarItem(title: "Apps", image: SFSymbols.apps, tag: 1)
-        appsVC.navigationItem.title     = "Apps"
-        return UINavigationController(rootViewController: appsVC)
-    }
-    
-    func createSearchVC() -> UINavigationController {
-        let searchVC                    = SearchVC()
-        searchVC.tabBarItem             = UITabBarItem(title: "Search", image: SFSymbols.search, tag: 2)
-        searchVC.navigationItem.title   = "Search"
-        return UINavigationController(rootViewController: searchVC)
+    fileprivate func createVC(viewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.navigationBar.prefersLargeTitles  = true
+        navController.tabBarItem.image                  = image
+        navController.tabBarItem.title                  = title
+        
+        viewController.navigationItem.title             = title
+        viewController.view.backgroundColor             = .systemBackground
+        
+        return navController
     }
 }
 
