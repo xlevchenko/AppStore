@@ -9,7 +9,7 @@ import UIKit
 
 
 enum SFSymbols {
-    static let today    = UIImage(systemName: "doc.text.image")
-    static let apps     = UIImage(systemName: "square.stack.3d.up.fill")
-    static let search   = UIImage(systemName: "magnifyingglass")
+    static let today    = UIImage(systemName: "doc.text.image")!
+    static let apps     = UIImage(systemName: "square.stack.3d.up.fill")!
+    static let search   = UIImage(systemName: "magnifyingglass")!
 }
