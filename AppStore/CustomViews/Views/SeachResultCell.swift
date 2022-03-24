@@ -12,7 +12,9 @@ class SeachResultCell: UICollectionViewCell {
     static let reuseID  = "searchCell"
     
     let avatarAppView   = AvatarImageView(frame: .zero)
-    let nameLable       = AppBodyLable()
+    let nameLable       = AppTitleLable(textAlignment: .left, fontSize: 14)
+    let categoryLable   = AppBodyLable(textAlignment: .left)
+    let ratingsLable    = AppSecondaryLable(fontSize: 12)
     let getButton       = GetButton(type: .system)
     
     
