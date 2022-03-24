@@ -25,5 +25,6 @@ class GetButton: UIButton {
         setTitle("GET", for: .normal)
         setTitleColor(.systemBlue, for: .normal)
         backgroundColor = UIColor(white: 0.95, alpha: 1)
+        layer.cornerRadius = 12
     }
 }

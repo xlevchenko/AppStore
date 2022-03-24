@@ -20,7 +20,6 @@
 		6096DB4627EA4881009D45BA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096DB4527EA4881009D45BA /* Constant.swift */; };
 		60D6CC8027EBA56800C7D9C6 /* SeachResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC7F27EBA56800C7D9C6 /* SeachResultCell.swift */; };
 		60D6CC8327EBB12400C7D9C6 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC8227EBB12400C7D9C6 /* AvatarImageView.swift */; };
-		60D6CC8627EBB27A00C7D9C6 /* AppBodyLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC8527EBB27A00C7D9C6 /* AppBodyLable.swift */; };
 		60D6CC8927EBB2FE00C7D9C6 /* GetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC8827EBB2FE00C7D9C6 /* GetButton.swift */; };
 		60D6CC8C27EBBC1E00C7D9C6 /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC8B27EBBC1E00C7D9C6 /* UIView + Ext.swift */; };
 /* End PBXBuildFile section */
@@ -41,7 +40,6 @@
 		6096DB4527EA4881009D45BA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		60D6CC7F27EBA56800C7D9C6 /* SeachResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachResultCell.swift; sourceTree = "<group>"; };
 		60D6CC8227EBB12400C7D9C6 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
-		60D6CC8527EBB27A00C7D9C6 /* AppBodyLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBodyLable.swift; sourceTree = "<group>"; };
 		60D6CC8827EBB2FE00C7D9C6 /* GetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetButton.swift; sourceTree = "<group>"; };
 		60D6CC8B27EBBC1E00C7D9C6 /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -155,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				607871D827EC5EBE00A2B6BD /* AppTitleLable.swift */,
-				60D6CC8527EBB27A00C7D9C6 /* AppBodyLable.swift */,
 				607871DA27EC60C700A2B6BD /* AppSecondaryLable.swift */,
 			);
 			path = Labels;
@@ -254,7 +251,6 @@
 				6058842E27EA2AE100E885D1 /* SearchVC.swift in Sources */,
 				6058842A27EA2A8200E885D1 /* AppsVC.swift in Sources */,
 				60D6CC8927EBB2FE00C7D9C6 /* GetButton.swift in Sources */,
-				60D6CC8627EBB27A00C7D9C6 /* AppBodyLable.swift in Sources */,
 				60D6CC8027EBA56800C7D9C6 /* SeachResultCell.swift in Sources */,
 				6058842C27EA2AC900E885D1 /* TodayVC.swift in Sources */,
 				605EF36327E8F8380051AF89 /* BaseTabBarController.swift in Sources */,
