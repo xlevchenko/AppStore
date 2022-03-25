@@ -19,8 +19,11 @@ class AvatarImageView: UIImageView {
     }
     
     private func configure() {
-        translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .red
-        layer.cornerRadius = 12
+        backgroundColor     = .red
+        layer.cornerRadius  = 12
+        
+        translatesAutoresizingMaskIntoConstraints               = false
+        widthAnchor.constraint(equalToConstant: 64).isActive    = true
+        heightAnchor.constraint(equalToConstant: 64).isActive   = true
     }
 }

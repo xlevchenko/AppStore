@@ -9,22 +9,30 @@ import UIKit
 
 class SeachResultCell: UICollectionViewCell {
     
-    static let reuseID  = "searchCell"
+    static let reuseID      = "searchCell"
     
-    let stackView = UIStackView()
-    let avatarAppView   = AvatarImageView(frame: .zero)
-    let nameLable       = AppTitleLable(textAlignment: .left, fontSize: 18)
-    let categoryLable   = AppSecondaryLable(fontSize: 15)
-    let ratingsLable    = AppSecondaryLable(fontSize: 14)
-    let getButton       = GetButton(type: .system)
+    let appIconImageView    = AvatarImageView(frame: .zero)
+    let nameLable           = AppTitleLable(textAlignment: .left, fontSize: 18)
+    let categoryLable       = AppSecondaryLable(fontSize: 15)
+    let ratingsLable        = AppSecondaryLable(fontSize: 14)
+    let getButton           = GetButton(type: .system)
+    
+    let screenshot1         = ScreenshotView(frame: .zero)
+    let screenshot2         = ScreenshotView(frame: .zero)
+    let screenshot3         = ScreenshotView(frame: .zero)
+    
+    var lableStackView          = UIStackView()
+    
+    
+
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        configureStackView()
-        set()
-        //backgroundColor = .systemYellow
+        configureLableStackView()
+        setText()
+        backgroundColor = .yellow
     }
     
     
@@ -33,40 +41,38 @@ class SeachResultCell: UICollectionViewCell {
     }
     
     
-    func set() {
+    func setText() {
         nameLable.text = "Instagram"
         categoryLable.text = "Photos & Video"
         ratingsLable.text = "9.13K"
     }
     
     
-    private func configureStackView() {
-        stackView.spacing       = 1
-        stackView.axis          = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureLableStackView() {
+        lableStackView.addArrangedSubview(nameLable)
+        lableStackView.addArrangedSubview(categoryLable)
+        lableStackView.addArrangedSubview(ratingsLable)
         
-        stackView.addArrangedSubview(nameLable)
-        stackView.addArrangedSubview(categoryLable)
-        stackView.addArrangedSubview(ratingsLable)
+        lableStackView.spacing       = 1
+        lableStackView.axis          = .vertical
+        lableStackView.translatesAutoresizingMaskIntoConstraints = false
     }
-    
+
     
     func configure() {
-        addSubviews(avatarAppView, stackView, getButton)
-  
-        NSLayoutConstraint.activate([
-            avatarAppView.topAnchor.constraint(equalTo: self.topAnchor, constant: 15),
-            avatarAppView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
-            avatarAppView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -170),
-            avatarAppView.widthAnchor.constraint(equalToConstant: 64),
-            
-            stackView.topAnchor.constraint(equalTo: avatarAppView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: avatarAppView.trailingAnchor, constant: 15),
-            stackView.bottomAnchor.constraint(equalTo: avatarAppView.bottomAnchor),
-            
-            getButton.centerYAnchor.constraint(equalTo: stackView.centerYAnchor),
-            getButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -25),
-            getButton.widthAnchor.constraint(equalToConstant: 70),
-        ])
+        let infoStackView = UIStackView(arrangedSubviews: [appIconImageView, lableStackView, getButton])
+        infoStackView.spacing = 12
+        infoStackView.alignment = .center
+        
+        let screenshotStackView     = UIStackView(arrangedSubviews: [screenshot1, screenshot2, screenshot3])
+        screenshotStackView.distribution  = .fillEqually
+        screenshotStackView.spacing       = 12
+        
+        let overallStackView = UIStackView(arrangedSubviews: [infoStackView, screenshotStackView])
+        overallStackView.axis = .vertical
+        overallStackView.spacing = 16
+        
+        addSubviews(overallStackView)
+        overallStackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
     }
 }
