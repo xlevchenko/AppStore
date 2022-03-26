@@ -19,6 +19,7 @@
 		606F458227EE5C20008C439C /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606F458127EE5C20008C439C /* UIView + Layout.swift */; };
 		607871D927EC5EBE00A2B6BD /* AppTitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607871D827EC5EBE00A2B6BD /* AppTitleLable.swift */; };
 		607871DB27EC60C700A2B6BD /* AppSecondaryLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607871DA27EC60C700A2B6BD /* AppSecondaryLable.swift */; };
+		607EDC7B27EF0FC4008B7136 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EDC7A27EF0FC4008B7136 /* VerticalStackView.swift */; };
 		6096DB4627EA4881009D45BA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6096DB4527EA4881009D45BA /* Constant.swift */; };
 		60D6CC8027EBA56800C7D9C6 /* SeachResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC7F27EBA56800C7D9C6 /* SeachResultCell.swift */; };
 		60D6CC8327EBB12400C7D9C6 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC8227EBB12400C7D9C6 /* AvatarImageView.swift */; };
@@ -41,6 +42,7 @@
 		606F458127EE5C20008C439C /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
 		607871D827EC5EBE00A2B6BD /* AppTitleLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTitleLable.swift; sourceTree = "<group>"; };
 		607871DA27EC60C700A2B6BD /* AppSecondaryLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecondaryLable.swift; sourceTree = "<group>"; };
+		607EDC7A27EF0FC4008B7136 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		6096DB4527EA4881009D45BA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		60D6CC7F27EBA56800C7D9C6 /* SeachResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachResultCell.swift; sourceTree = "<group>"; };
 		60D6CC8227EBB12400C7D9C6 /* AvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
@@ -122,6 +124,8 @@
 		606F457E27EE18F0008C439C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				606F458127EE5C20008C439C /* UIView + Layout.swift */,
+				607EDC7A27EF0FC4008B7136 /* VerticalStackView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -183,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				60D6CC8B27EBBC1E00C7D9C6 /* UIView + Ext.swift */,
-				606F458127EE5C20008C439C /* UIView + Layout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				605EF36327E8F8380051AF89 /* BaseTabBarController.swift in Sources */,
 				605EF34F27E8F76F0051AF89 /* AppDelegate.swift in Sources */,
 				607871D927EC5EBE00A2B6BD /* AppTitleLable.swift in Sources */,
+				607EDC7B27EF0FC4008B7136 /* VerticalStackView.swift in Sources */,
 				605EF35127E8F76F0051AF89 /* SceneDelegate.swift in Sources */,
 				606F458227EE5C20008C439C /* UIView + Layout.swift in Sources */,
 			);

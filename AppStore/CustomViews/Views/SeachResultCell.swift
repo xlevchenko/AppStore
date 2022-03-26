@@ -20,19 +20,12 @@ class SeachResultCell: UICollectionViewCell {
     let screenshot1         = ScreenshotView(frame: .zero)
     let screenshot2         = ScreenshotView(frame: .zero)
     let screenshot3         = ScreenshotView(frame: .zero)
-    
-    var lableStackView          = UIStackView()
-    
-    
 
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
-        configureLableStackView()
+        configureStackView()
         setText()
-        backgroundColor = .yellow
     }
     
     
@@ -42,37 +35,26 @@ class SeachResultCell: UICollectionViewCell {
     
     
     func setText() {
-        nameLable.text = "Instagram"
-        categoryLable.text = "Photos & Video"
-        ratingsLable.text = "9.13K"
-    }
-    
-    
-    private func configureLableStackView() {
-        lableStackView.addArrangedSubview(nameLable)
-        lableStackView.addArrangedSubview(categoryLable)
-        lableStackView.addArrangedSubview(ratingsLable)
-        
-        lableStackView.spacing       = 1
-        lableStackView.axis          = .vertical
-        lableStackView.translatesAutoresizingMaskIntoConstraints = false
+        nameLable.text      = "Instagram"
+        categoryLable.text  = "Photos & Video"
+        ratingsLable.text   = "9.13K"
     }
 
     
-    func configure() {
-        let infoStackView = UIStackView(arrangedSubviews: [appIconImageView, lableStackView, getButton])
-        infoStackView.spacing = 12
-        infoStackView.alignment = .center
+    func configureStackView() {
+        let lableStackView                  = VerticalStackView(arrangedSubviews: [nameLable, categoryLable, ratingsLable])
         
-        let screenshotStackView     = UIStackView(arrangedSubviews: [screenshot1, screenshot2, screenshot3])
-        screenshotStackView.distribution  = .fillEqually
-        screenshotStackView.spacing       = 12
+        let infoStackView                   = UIStackView(arrangedSubviews: [appIconImageView, lableStackView, getButton])
+        infoStackView.alignment             = .center
+        infoStackView.spacing               = 12
         
-        let overallStackView = UIStackView(arrangedSubviews: [infoStackView, screenshotStackView])
-        overallStackView.axis = .vertical
-        overallStackView.spacing = 16
+        let screenshotStackView             = UIStackView(arrangedSubviews: [screenshot1, screenshot2, screenshot3] )
+        screenshotStackView.distribution    = .fillEqually
+        screenshotStackView.spacing         = 12
         
-        addSubviews(overallStackView)
+        let overallStackView                = VerticalStackView(arrangedSubviews: [infoStackView, screenshotStackView], spacing: 16)
+        
+        addSubview(overallStackView)
         overallStackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
     }
 }
