@@ -1,13 +1,13 @@
 //
-//  AvatarImageView.swift
+//  AppIconImageView.swift
 //  AppStore
 //
-//  Created by Olexsii Levchenko on 3/23/22.
+//  Created by Olexsii Levchenko on 3/26/22.
 //
 
 import UIKit
 
-class AvatarImageView: UIImageView {
+class AppIconImageView: UIImageView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

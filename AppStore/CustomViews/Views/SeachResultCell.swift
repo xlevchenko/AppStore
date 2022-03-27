@@ -11,7 +11,7 @@ class SeachResultCell: UICollectionViewCell {
     
     static let reuseID      = "searchCell"
     
-    let appIconImageView    = AvatarImageView(frame: .zero)
+    let appIconImageView    = AppIconImageView(frame: .zero)
     let nameLable           = AppTitleLable(textAlignment: .left, fontSize: 18)
     let categoryLable       = AppSecondaryLable(fontSize: 15)
     let ratingsLable        = AppSecondaryLable(fontSize: 14)
@@ -25,7 +25,6 @@ class SeachResultCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureStackView()
-        setText()
     }
     
     
@@ -33,13 +32,6 @@ class SeachResultCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    func setText() {
-        nameLable.text      = "Instagram"
-        categoryLable.text  = "Photos & Video"
-        ratingsLable.text   = "9.13K"
-    }
-
     
     func configureStackView() {
         let lableStackView                  = VerticalStackView(arrangedSubviews: [nameLable, categoryLable, ratingsLable])
