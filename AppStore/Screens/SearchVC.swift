@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +16,17 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         fetchITunesApps()
     }
     
+    
+    init() {
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+
     fileprivate func fetchITunesApps() {
         let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
         guard let url = URL(string: urlString) else { return }
@@ -28,22 +39,17 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
                 return
             }
             
-            if let urlResponse = urlResponse {
-                <#body#>
+            guard let data = data else { return }
+            
+            do {
+                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+                print(searchResult)
+            } catch {
+                print("Failed to decode json:", error)
             }
         }
         .resume()
     }
-    
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -64,3 +70,4 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         return cell
     }
 }
+
