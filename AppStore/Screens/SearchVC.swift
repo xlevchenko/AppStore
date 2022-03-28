@@ -26,29 +26,23 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    
+    fileprivate var appResults = [Result]()
+    
+    
     fileprivate func fetchITunesApps() {
-        let urlString = "https://itunes.apple.com/search?term=instagram&entity=software"
-        guard let url = URL(string: urlString) else { return }
-        
-        //fetch data from internet
-        URLSession.shared.dataTask(with: url) { data, urlResponse, error in
+        NetworkManager.shared.fetchITunesApps { results, error in
+            self.appResults = results
             
             if let error = error {
                 print("Failed to featch apps", error)
                 return
             }
             
-            guard let data = data else { return }
-            
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                print(searchResult)
-            } catch {
-                print("Failed to decode json:", error)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
-        .resume()
     }
     
     
@@ -58,15 +52,16 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return appResults.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeachResultCell.reuseID, for: indexPath) as! SeachResultCell
-        cell.nameLable.text = "Instagram"
-        cell.categoryLable.text = "Photos & Video"
-        cell.ratingsLable.text = "9.13K"
+        let appResult = appResults[indexPath.item]
+        cell.nameLable.text = appResult.trackName
+        cell.categoryLable.text = appResult.primaryGenreName
+        cell.ratingsLable.text = String("\(appResult.averageUserRating)")
         return cell
     }
 }

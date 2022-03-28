@@ -17,5 +17,5 @@ struct SearchResult: Decodable {
 struct Result: Decodable {
     let trackName: String
     let primaryGenreName: String
-    let averageUserRating: Double
+    let averageUserRating: Float
 }
