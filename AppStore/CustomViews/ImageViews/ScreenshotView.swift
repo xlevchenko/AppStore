@@ -20,8 +20,10 @@ class ScreenshotView: UIImageView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .systemBlue
-        widthAnchor.constraint(equalToConstant: 110).isActive = true
-        heightAnchor.constraint(equalToConstant: 210).isActive = true
+        layer.borderColor   = UIColor(white: 0.5, alpha: 0.5).cgColor
+        //layer.cornerRadius  = 1
+        contentMode         = .scaleAspectFill
+        layer.borderWidth   = 0.2
+        clipsToBounds       = true
     }
 }

@@ -21,6 +21,26 @@ class SeachResultCell: UICollectionViewCell {
     let screenshot2         = ScreenshotView(frame: .zero)
     let screenshot3         = ScreenshotView(frame: .zero)
 
+    var appResult: Result! {
+        didSet {
+            nameLable.text = appResult.trackName
+            categoryLable.text = appResult.primaryGenreName
+            ratingsLable.text = String("\(appResult.averageUserRating)")
+            
+            
+            appIconImageView.sd_setImage(with: URL(string: appResult.artworkUrl100))
+            screenshot1.sd_setImage(with: URL(string: appResult.screenshotUrls[0]))
+            
+            if appResult.screenshotUrls.count > 1 {
+            screenshot2.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
+            }
+            
+            if appResult.screenshotUrls.count > 2 {
+            screenshot3.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
+            }
+        }
+    }
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)

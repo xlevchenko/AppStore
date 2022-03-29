@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppIconImageView: UIImageView {
 
@@ -19,8 +20,8 @@ class AppIconImageView: UIImageView {
     }
     
     private func configure() {
-        backgroundColor     = .red
-        layer.cornerRadius  = 12
+        layer.cornerRadius  = 14
+        clipsToBounds       = true
         
         translatesAutoresizingMaskIntoConstraints               = false
         widthAnchor.constraint(equalToConstant: 64).isActive    = true

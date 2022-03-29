@@ -47,7 +47,7 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: view.frame.width, height: 330)
     }
     
     
@@ -58,10 +58,8 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeachResultCell.reuseID, for: indexPath) as! SeachResultCell
-        let appResult = appResults[indexPath.item]
-        cell.nameLable.text = appResult.trackName
-        cell.categoryLable.text = appResult.primaryGenreName
-        cell.ratingsLable.text = String("\(appResult.averageUserRating)")
+        
+        cell.appResult = appResults[indexPath.item]        
         return cell
     }
 }
