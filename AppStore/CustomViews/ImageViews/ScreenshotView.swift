@@ -21,9 +21,8 @@ class ScreenshotView: UIImageView {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.borderColor   = UIColor(white: 0.5, alpha: 0.5).cgColor
-        //layer.cornerRadius  = 1
+        layer.cornerRadius  = 4
         contentMode         = .scaleAspectFill
-        layer.borderWidth   = 0.2
         clipsToBounds       = true
     }
 }

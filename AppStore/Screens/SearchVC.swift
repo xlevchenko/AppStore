@@ -7,13 +7,21 @@
 
 import UIKit
 
-class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+    
+    fileprivate var appResults          = [Result]()
+    fileprivate let searchComtroller    = UISearchController(searchResultsController: nil)
+    fileprivate let searchLable         = AppTitleLable(textAlignment: .center, fontSize: 20)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(SeachResultCell.self, forCellWithReuseIdentifier: SeachResultCell.reuseID)
-        fetchITunesApps()
+        setupSearchBar()
+        collectionView.addSubview(searchLable)
+        searchLable.text = "Please enter search term above.."
+        searchLable.fillSuperview(padding: .init(top: 100, left: 40, bottom: 0, right: 50))
+        
     }
     
     
@@ -27,11 +35,35 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     }
     
     
-    fileprivate var appResults = [Result]()
+    fileprivate func setupSearchBar() {
+        definesPresentationContext                  = true
+        navigationItem.searchController             = searchComtroller
+        navigationItem.hidesSearchBarWhenScrolling  = false
+        searchComtroller.searchBar.delegate         = self
+    }
+    
+    
+    var timer = Timer()
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        timer.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
+            
+            NetworkManager.shared.fetchITunesApps(searchTerm: searchText) { result, error in
+                self.appResults = result
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        })
+    }
     
     
     fileprivate func fetchITunesApps() {
-        NetworkManager.shared.fetchITunesApps { results, error in
+        NetworkManager.shared.fetchITunesApps(searchTerm: "") { results, error in
             self.appResults = results
             
             if let error = error {
