@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate var appResults          = [Result]()
     fileprivate let searchComtroller    = UISearchController(searchResultsController: nil)
@@ -22,16 +22,6 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, 
         searchLable.text = "Please enter search term above.."
         searchLable.fillSuperview(padding: .init(top: 100, left: 40, bottom: 0, right: 50))
         
-    }
-    
-    
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -84,6 +74,7 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, 
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        searchLable.isHidden = appResults.count != 0
         return appResults.count
     }
     
@@ -94,5 +85,8 @@ class SearchVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, 
         cell.appResult = appResults[indexPath.item]        
         return cell
     }
+    
+   
+    
 }
 

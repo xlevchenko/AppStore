@@ -16,6 +16,8 @@
 		605EF35827E8F76F0051AF89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605EF35727E8F76F0051AF89 /* Assets.xcassets */; };
 		605EF35B27E8F76F0051AF89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 605EF35927E8F76F0051AF89 /* LaunchScreen.storyboard */; };
 		605EF36327E8F8380051AF89 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605EF36227E8F8380051AF89 /* BaseTabBarController.swift */; };
+		6066709527F626B300881F53 /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066709427F626B300881F53 /* BaseListViewController.swift */; };
+		6066709727F6299100881F53 /* AppsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6066709627F6299100881F53 /* AppsCell.swift */; };
 		606F458027EE35D0008C439C /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606F457F27EE35D0008C439C /* ScreenshotView.swift */; };
 		606F458227EE5C20008C439C /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606F458127EE5C20008C439C /* UIView + Layout.swift */; };
 		607871D927EC5EBE00A2B6BD /* AppTitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607871D827EC5EBE00A2B6BD /* AppTitleLable.swift */; };
@@ -42,6 +44,8 @@
 		605EF35A27E8F76F0051AF89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		605EF35C27E8F76F0051AF89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		605EF36227E8F8380051AF89 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		6066709427F626B300881F53 /* BaseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListViewController.swift; sourceTree = "<group>"; };
+		6066709627F6299100881F53 /* AppsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsCell.swift; sourceTree = "<group>"; };
 		606F457F27EE35D0008C439C /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
 		606F458127EE5C20008C439C /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
 		607871D827EC5EBE00A2B6BD /* AppTitleLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTitleLable.swift; sourceTree = "<group>"; };
@@ -76,18 +80,19 @@
 				60D6CC8727EBB2A300C7D9C6 /* Buttons */,
 				60D6CC8427EBB1C400C7D9C6 /* Labels */,
 				60D6CC8127EBB0CB00C7D9C6 /* ImageViews */,
-				60D6CC7E27EBA50800C7D9C6 /* Views */,
-				6058842727EA269B00E885D1 /* TabBarController */,
+				60D6CC7E27EBA50800C7D9C6 /* Cell */,
+				6058842727EA269B00E885D1 /* BaseControllers */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		6058842727EA269B00E885D1 /* TabBarController */ = {
+		6058842727EA269B00E885D1 /* BaseControllers */ = {
 			isa = PBXGroup;
 			children = (
 				605EF36227E8F8380051AF89 /* BaseTabBarController.swift */,
+				6066709427F626B300881F53 /* BaseListViewController.swift */,
 			);
-			path = TabBarController;
+			path = BaseControllers;
 			sourceTree = "<group>";
 		};
 		6058842827EA29EB00E885D1 /* Screens */ = {
@@ -178,12 +183,13 @@
 			path = Servive;
 			sourceTree = "<group>";
 		};
-		60D6CC7E27EBA50800C7D9C6 /* Views */ = {
+		60D6CC7E27EBA50800C7D9C6 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				60D6CC7F27EBA56800C7D9C6 /* SeachResultCell.swift */,
+				6066709627F6299100881F53 /* AppsCell.swift */,
 			);
-			path = Views;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		60D6CC8127EBB0CB00C7D9C6 /* ImageViews */ = {
@@ -226,7 +232,6 @@
 				48F8685D2357B12BC49E6C28 /* Pods-AppStore.debug.xcconfig */,
 				D95ED080CF0812E856F3E133 /* Pods-AppStore.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -362,8 +367,10 @@
 				60D6CC8927EBB2FE00C7D9C6 /* GetButton.swift in Sources */,
 				60D6CC8027EBA56800C7D9C6 /* SeachResultCell.swift in Sources */,
 				607EDC7D27EF6FA6008B7136 /* AppIconImageView.swift in Sources */,
+				6066709527F626B300881F53 /* BaseListViewController.swift in Sources */,
 				6058842C27EA2AC900E885D1 /* TodayVC.swift in Sources */,
 				605EF36327E8F8380051AF89 /* BaseTabBarController.swift in Sources */,
+				6066709727F6299100881F53 /* AppsCell.swift in Sources */,
 				605EF34F27E8F76F0051AF89 /* AppDelegate.swift in Sources */,
 				607871D927EC5EBE00A2B6BD /* AppTitleLable.swift in Sources */,
 				607EDC7B27EF0FC4008B7136 /* VerticalStackView.swift in Sources */,
