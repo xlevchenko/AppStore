@@ -11,7 +11,7 @@ class AppsVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .systemPink
+        //collectionView.backgroundColor = .systemPink
         collectionView.register(AppsCell.self, forCellWithReuseIdentifier: AppsCell.appReuseID)
     }
     

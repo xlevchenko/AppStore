@@ -13,6 +13,8 @@ class AppsCell: UICollectionViewCell {
     
     let titleLabel = AppTitleLable(textAlignment: .left, fontSize: 25)
     
+    let horizontalController = AppsHorizontalVC()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .lightGray
@@ -28,5 +30,9 @@ class AppsCell: UICollectionViewCell {
         addSubview(titleLabel)
         titleLabel.text = "App Section"
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+        
+        addSubview(horizontalController.view)
+        horizontalController.view.backgroundColor = .systemBlue
+        horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
 }
