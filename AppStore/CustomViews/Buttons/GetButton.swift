@@ -20,7 +20,7 @@ class GetButton: UIButton {
     
     
     func configure() {
-        titleLabel?.font    = .boldSystemFont(ofSize: 14)
+        titleLabel?.font    = .boldSystemFont(ofSize: 16)
         backgroundColor     = UIColor(white: 0.95, alpha: 1)
         layer.cornerRadius  = 16
         
@@ -28,7 +28,7 @@ class GetButton: UIButton {
         setTitleColor(.systemBlue, for: .normal)
         
         translatesAutoresizingMaskIntoConstraints               = false
-        widthAnchor.constraint(equalToConstant: 70).isActive    = true
-        heightAnchor.constraint(equalToConstant: 30).isActive   = true
+        widthAnchor.constraint(equalToConstant: 80).isActive    = true
+        heightAnchor.constraint(equalToConstant: 32).isActive   = true
     }
 }

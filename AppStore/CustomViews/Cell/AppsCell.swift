@@ -17,7 +17,7 @@ class AppsCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .lightGray
+        //backgroundColor = .lightGray
         configureStackView()
     }
     
@@ -29,10 +29,10 @@ class AppsCell: UICollectionViewCell {
     func configureStackView() {
         addSubview(titleLabel)
         titleLabel.text = "App Section"
-        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 0))
         
         addSubview(horizontalController.view)
-        horizontalController.view.backgroundColor = .systemBlue
+        //horizontalController.view.backgroundColor = .systemBlue
         horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
 }
