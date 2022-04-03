@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 enum SFSymbols {
     static let today    = UIImage(systemName: "doc.text.image")!
     static let apps     = UIImage(systemName: "square.stack.3d.up.fill")!

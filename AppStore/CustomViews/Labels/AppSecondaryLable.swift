@@ -20,9 +20,10 @@ class AppSecondaryLable: UILabel {
     }
     
     
-    convenience init(fontSize: CGFloat) {
+    convenience init(text: String, fontSize: CGFloat) {
         self.init(frame: .zero)
-        font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
+        self.text = text
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
     }
     
     

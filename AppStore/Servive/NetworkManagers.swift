@@ -10,7 +10,6 @@ import Foundation
 class NetworkManager {
     
     static let shared   = NetworkManager()
-//    private let baseUrl = "https://api.github.com/users/"
     
     func fetchITunesApps(searchTerm: String, completed: @escaping ([Result], Error?) -> ()) {
         let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
@@ -30,7 +29,7 @@ class NetworkManager {
                 let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
                 completed(searchResult.results, nil)
             } catch let jsonErr {
-                print("Failed to decode json:", error)
+                print("Failed to decode json:", error as Any)
                 completed([], jsonErr)
             }
         }

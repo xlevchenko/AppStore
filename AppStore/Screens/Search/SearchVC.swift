@@ -11,7 +11,7 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
     
     fileprivate var appResults          = [Result]()
     fileprivate let searchComtroller    = UISearchController(searchResultsController: nil)
-    fileprivate let searchLable         = AppTitleLable(textAlignment: .center, fontSize: 20)
+    fileprivate let searchLable         = AppTitleLable(text: "Please enter search term above..", textAlignment: .center, fontSize: 20)
     
     
     override func viewDidLoad() {
@@ -19,7 +19,6 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
         collectionView.register(SeachResultCell.self, forCellWithReuseIdentifier: SeachResultCell.reuseID)
         setupSearchBar()
         collectionView.addSubview(searchLable)
-        searchLable.text = "Please enter search term above.."
         searchLable.fillSuperview(padding: .init(top: 100, left: 40, bottom: 0, right: 50))
         
     }
@@ -34,7 +33,6 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
     
     
     var timer = Timer()
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
@@ -81,7 +79,6 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeachResultCell.reuseID, for: indexPath) as! SeachResultCell
-        
         cell.appResult = appResults[indexPath.item]        
         return cell
     }

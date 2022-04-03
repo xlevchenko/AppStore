@@ -11,13 +11,12 @@ class AppsCell: UICollectionViewCell {
     
     static let appReuseID      = "appCell"
     
-    let titleLabel = AppTitleLable(textAlignment: .left, fontSize: 25)
+    let titleLabel = AppTitleLable(text: "App Section", textAlignment: .left, fontSize: 25)
     
     let horizontalController = AppsHorizontalVC()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //backgroundColor = .lightGray
         configureStackView()
     }
     
@@ -28,11 +27,9 @@ class AppsCell: UICollectionViewCell {
     
     func configureStackView() {
         addSubview(titleLabel)
-        titleLabel.text = "App Section"
         titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 0))
         
         addSubview(horizontalController.view)
-        //horizontalController.view.backgroundColor = .systemBlue
         horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
 }

@@ -12,9 +12,9 @@ class SeachResultCell: UICollectionViewCell {
     static let reuseID      = "searchCell"
     
     let appIconImageView    = AppIconImageView(frame: .zero)
-    let nameLable           = AppTitleLable(textAlignment: .left, fontSize: 18)
-    let categoryLable       = AppSecondaryLable(fontSize: 15)
-    let ratingsLable        = AppSecondaryLable(fontSize: 14)
+    var nameLable           = AppTitleLable(text: "", textAlignment: .left, fontSize: 18)
+    var categoryLable       = AppSecondaryLable(text: "", fontSize: 15)
+    var ratingsLable        = AppSecondaryLable(text: "", fontSize: 14)
     let getButton           = GetButton(type: .system)
     
     let screenshot1         = ScreenshotView(frame: .zero)
@@ -23,9 +23,9 @@ class SeachResultCell: UICollectionViewCell {
 
     var appResult: Result! {
         didSet {
-            nameLable.text = appResult.trackName
-            categoryLable.text = appResult.primaryGenreName
-            ratingsLable.text = String("\(appResult.averageUserRating)")
+            nameLable.text      = appResult.trackName
+            categoryLable.text  = appResult.primaryGenreName
+            ratingsLable.text   = String("\(appResult.averageUserRating)")
             
             
             appIconImageView.sd_setImage(with: URL(string: appResult.artworkUrl100))
