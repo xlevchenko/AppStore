@@ -20,14 +20,19 @@ class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
     }
 
     
+    var editorsChoiceGames: AppsResult?
+    
     fileprivate func fetchData() {
         NetworkManager.shared.fetchApps { appsResult, error in
             
             if let error = error {
                 print("Failed to featch apps", error)
             }
+            self.editorsChoiceGames = appsResult
             
-            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
     
@@ -43,12 +48,15 @@ class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsCell.appReuseID, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsCell.appReuseID, for: indexPath) as! AppsCell
+        cell.titleLabel.text = editorsChoiceGames?.feed.title
+        cell.horizontalController.appResult = editorsChoiceGames
+        cell.horizontalController.collectionView.reloadData()
         return cell
     }
     
