@@ -16,11 +16,9 @@ class AppsHeaderAppCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configure()
         configureStackView()
         imageView.backgroundColor = .red
-        companyLable.textColor = .systemBlue
-        titleLable.font = .systemFont(ofSize: 22)
-        titleLable.numberOfLines = 2
     }
     
     
@@ -28,6 +26,11 @@ class AppsHeaderAppCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure() {
+        companyLable.textColor = .systemBlue
+        titleLable.font = .systemFont(ofSize: 22)
+        titleLable.numberOfLines = 2
+    }
     
     func configureStackView() {
         let stackView = VerticalStackView(arrangedSubviews: [companyLable, titleLable, categoryLable, imageView])

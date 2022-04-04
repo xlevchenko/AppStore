@@ -29,8 +29,33 @@ class NetworkManager {
                 let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
                 completed(searchResult.results, nil)
             } catch let jsonErr {
-                print("Failed to decode json:", error as Any)
+                print("Failed to decode json:", jsonErr)
                 completed([], jsonErr)
+            }
+        }
+        .resume()
+    }
+    
+    
+    func fetchApps(completed: @escaping (AppsResult?, Error?) -> ()) {
+        let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json"
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            if let error = error {
+                print("Failed to featch apps", error)
+                completed(nil, error)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let appsResult = try JSONDecoder().decode(AppsResult.self, from: data)
+                completed(appsResult, nil)
+            } catch let jsonErr {
+                print("Failed to decode json:", jsonErr)
+                completed(nil, jsonErr)
             }
         }
         .resume()
