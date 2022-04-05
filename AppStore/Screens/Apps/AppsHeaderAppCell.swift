@@ -10,7 +10,7 @@ import UIKit
 class AppsHeaderAppCell: UICollectionViewCell {
     
     let companyLable = AppTitleLable(text: "Facebook", textAlignment: .left, fontSize: 12)
-    let titleLable = AppTitleLable(text: "Canva: Design, Photo & Video", textAlignment: .left, fontSize: 22)
+    let titleLable = AppTitleLable(text: "Canva: Design, Photo & Video", textAlignment: .left, fontSize: 18)
     let categoryLable = AppSecondaryLable(text: "Create beautiful designs", fontSize: 17)
     let imageView = ScreenshotView(frame: .zero)
     
@@ -18,7 +18,6 @@ class AppsHeaderAppCell: UICollectionViewCell {
         super.init(frame: frame)
         configure()
         configureStackView()
-        imageView.backgroundColor = .red
     }
     
     
@@ -28,7 +27,7 @@ class AppsHeaderAppCell: UICollectionViewCell {
     
     func configure() {
         companyLable.textColor = .systemBlue
-        titleLable.font = .systemFont(ofSize: 22)
+        titleLable.font = .systemFont(ofSize: 20)
         titleLable.numberOfLines = 2
     }
     
@@ -36,8 +35,6 @@ class AppsHeaderAppCell: UICollectionViewCell {
         let stackView = VerticalStackView(arrangedSubviews: [companyLable, titleLable, categoryLable, imageView])
         addSubview(stackView)
         stackView.spacing = 5
-        stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 0, right: 0))
-        
-        
+        stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 0, right: 6))
     }
 }

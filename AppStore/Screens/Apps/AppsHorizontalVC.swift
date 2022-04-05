@@ -12,7 +12,7 @@ private let reuseIdentifier = "horizontalCell"
 class AppsHorizontalVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
     
     var appResult: AppsResult?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +21,8 @@ class AppsHorizontalVC: BaseListViewController, UICollectionViewDelegateFlowLayo
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
         }
-   }
+    }
+    
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -69,4 +69,29 @@ class NetworkManager {
         }
         .resume()
     }
+    
+    func fetchSocialApps(completed: @escaping ([SocialApps], Error?) -> ()) {
+        let urlString = "https://api.letsbuildthatapp.com/appstore/social"
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, urlResponse, error in
+            
+            if let error = error {
+                print("Failed to featch apps", error)
+                completed([], nil)
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let socialResult = try JSONDecoder().decode([SocialApps].self, from: data)
+                completed(socialResult, nil)
+            } catch let jsonErr {
+                print("Failed to decode json:", jsonErr)
+                completed([], jsonErr)
+            }
+        }
+        .resume()
+    }
 }

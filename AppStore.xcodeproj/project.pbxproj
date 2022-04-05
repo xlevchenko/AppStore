@@ -16,6 +16,8 @@
 		605EF35827E8F76F0051AF89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605EF35727E8F76F0051AF89 /* Assets.xcassets */; };
 		605EF35B27E8F76F0051AF89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 605EF35927E8F76F0051AF89 /* LaunchScreen.storyboard */; };
 		605EF36327E8F8380051AF89 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605EF36227E8F8380051AF89 /* BaseTabBarController.swift */; };
+		6061E8C027FCC14600451019 /* SocialApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6061E8BF27FCC14600451019 /* SocialApps.swift */; };
+		6061E8C327FCDF2700451019 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6061E8C227FCDF2700451019 /* ActivityIndicatorView.swift */; };
 		6065D5B227FA103B0012D07C /* AppsPageHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065D5B127FA103B0012D07C /* AppsPageHeaderVC.swift */; };
 		6065D5B427FA1E8B0012D07C /* AppsHeaderHorizontalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065D5B327FA1E8B0012D07C /* AppsHeaderHorizontalVC.swift */; };
 		6065D5B627FA21C30012D07C /* AppsHeaderAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6065D5B527FA21C30012D07C /* AppsHeaderAppCell.swift */; };
@@ -50,6 +52,8 @@
 		605EF35A27E8F76F0051AF89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		605EF35C27E8F76F0051AF89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		605EF36227E8F8380051AF89 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		6061E8BF27FCC14600451019 /* SocialApps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialApps.swift; sourceTree = "<group>"; };
+		6061E8C227FCDF2700451019 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		6065D5B127FA103B0012D07C /* AppsPageHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageHeaderVC.swift; sourceTree = "<group>"; };
 		6065D5B327FA1E8B0012D07C /* AppsHeaderHorizontalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderHorizontalVC.swift; sourceTree = "<group>"; };
 		6065D5B527FA21C30012D07C /* AppsHeaderAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHeaderAppCell.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 		6058842627EA265900E885D1 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				6061E8C127FCDECA00451019 /* Activity Indicator View */,
 				60D6CC8727EBB2A300C7D9C6 /* Buttons */,
 				60D6CC8427EBB1C400C7D9C6 /* Labels */,
 				60D6CC8127EBB0CB00C7D9C6 /* ImageViews */,
@@ -149,6 +154,14 @@
 				605EF35C27E8F76F0051AF89 /* Info.plist */,
 			);
 			path = AppStore;
+			sourceTree = "<group>";
+		};
+		6061E8C127FCDECA00451019 /* Activity Indicator View */ = {
+			isa = PBXGroup;
+			children = (
+				6061E8C227FCDF2700451019 /* ActivityIndicatorView.swift */,
+			);
+			path = "Activity Indicator View";
 			sourceTree = "<group>";
 		};
 		606F457E27EE18F0008C439C /* Helpers */ = {
@@ -212,6 +225,7 @@
 			children = (
 				60D5F1B827F240FC00980783 /* SearchResult.swift */,
 				60740E6927FB61F200220032 /* AppsResult.swift */,
+				6061E8BF27FCC14600451019 /* SocialApps.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +421,7 @@
 				606F458027EE35D0008C439C /* ScreenshotView.swift in Sources */,
 				6058842E27EA2AE100E885D1 /* SearchVC.swift in Sources */,
 				6065D5B427FA1E8B0012D07C /* AppsHeaderHorizontalVC.swift in Sources */,
+				6061E8C027FCC14600451019 /* SocialApps.swift in Sources */,
 				6058842A27EA2A8200E885D1 /* AppsPageVC.swift in Sources */,
 				60D6CC8927EBB2FE00C7D9C6 /* GetButton.swift in Sources */,
 				60D6CC8027EBA56800C7D9C6 /* SeachResultCell.swift in Sources */,
@@ -425,6 +440,7 @@
 				605EF35127E8F76F0051AF89 /* SceneDelegate.swift in Sources */,
 				606F458227EE5C20008C439C /* UIView + Layout.swift in Sources */,
 				60D5F1B927F240FD00980783 /* SearchResult.swift in Sources */,
+				6061E8C327FCDF2700451019 /* ActivityIndicatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
