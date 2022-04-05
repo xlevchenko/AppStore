@@ -37,8 +37,17 @@ class NetworkManager {
     }
     
     
-    func fetchApps(completed: @escaping (AppsResult?, Error?) -> ()) {
+    func fetchTopPaid(completed: @escaping (AppsResult?, Error?) -> ()) {
         let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json"
+       fetchAppResult(urlString: urlString, completed: completed)
+    }
+    
+    func fetchTopFree(completed: @escaping (AppsResult?, Error?) -> ()) {
+        let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/50/apps.json"
+       fetchAppResult(urlString: urlString, completed: completed)
+    }
+    
+    func fetchAppResult(urlString: String, completed: @escaping (AppsResult?, Error?) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
