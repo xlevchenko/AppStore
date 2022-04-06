@@ -29,6 +29,7 @@ class AppsHeaderHorizontalVC: BaseListViewController, UICollectionViewDelegateFl
         return socialApps.count
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! AppsHeaderAppCell
         let apps = self.socialApps[indexPath.item]

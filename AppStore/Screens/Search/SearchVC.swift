@@ -39,8 +39,8 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
         timer.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
             
-            NetworkManager.shared.fetchITunesApps(searchTerm: searchText) { result, error in
-                self.appResults = result
+            NetworkManager.shared.fetchITunesApps(searchTerm: searchText) { res, error in
+                self.appResults = res?.results ?? []
                 
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -51,8 +51,8 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
     
     
     fileprivate func fetchITunesApps() {
-        NetworkManager.shared.fetchITunesApps(searchTerm: "") { results, error in
-            self.appResults = results
+        NetworkManager.shared.fetchITunesApps(searchTerm: "") { res, error in
+            self.appResults = res?.results ?? []
             
             if let error = error {
                 print("Failed to featch apps", error)
@@ -81,9 +81,6 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeachResultCell.reuseID, for: indexPath) as! SeachResultCell
         cell.appResult = appResults[indexPath.item]        
         return cell
-    }
-    
-   
-    
+    }   
 }
 

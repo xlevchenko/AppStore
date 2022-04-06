@@ -61,7 +61,7 @@ class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
             if let error = error {
                 print("Failed to featch apps", error)
             }
-            self.socialApps = app
+            self.socialApps = app ?? []
         }
         
         //completion

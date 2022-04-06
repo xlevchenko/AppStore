@@ -11,85 +11,55 @@ class NetworkManager {
     
     static let shared   = NetworkManager()
     
-    func fetchITunesApps(searchTerm: String, completed: @escaping ([Result], Error?) -> ()) {
+    
+    func fetchITunesApps(searchTerm: String, completed: @escaping (SearchResult?, Error?) -> Void) {
         let urlString = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
-        guard let url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: url) { data, urlResponse, error in
-            
-            if let error = error {
-                print("Failed to featch apps", error)
-                completed([], nil)
-                return
-            }
-            
-            guard let data = data else { return }
-            
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                completed(searchResult.results, nil)
-            } catch let jsonErr {
-                print("Failed to decode json:", jsonErr)
-                completed([], jsonErr)
-            }
-        }
-        .resume()
+        fetchGenericJSONData(urlString: urlString, completion: completed)
     }
     
     
-    func fetchTopPaid(completed: @escaping (AppsResult?, Error?) -> ()) {
+    func fetchTopPaid(completed: @escaping (AppsResult?, Error?) -> Void) {
         let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/50/apps.json"
-       fetchAppResult(urlString: urlString, completed: completed)
-    }
-    
-    func fetchTopFree(completed: @escaping (AppsResult?, Error?) -> ()) {
-        let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/50/apps.json"
-       fetchAppResult(urlString: urlString, completed: completed)
-    }
-    
-    func fetchAppResult(urlString: String, completed: @escaping (AppsResult?, Error?) -> Void) {
-        guard let url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            if let error = error {
-                print("Failed to featch apps", error)
-                completed(nil, error)
-            }
-            
-            guard let data = data else { return }
-            
-            do {
-                let appsResult = try JSONDecoder().decode(AppsResult.self, from: data)
-                completed(appsResult, nil)
-            } catch let jsonErr {
-                print("Failed to decode json:", jsonErr)
-                completed(nil, jsonErr)
-            }
-        }
-        .resume()
+        fetchGenericJSONData(urlString: urlString, completion: completed)
     }
     
-    func fetchSocialApps(completed: @escaping ([SocialApps], Error?) -> ()) {
+    
+    func fetchTopFree(completed: @escaping (AppsResult?, Error?) -> Void) {
+        let urlString = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/50/apps.json"
+        
+        fetchGenericJSONData(urlString: urlString, completion: completed)
+    }
+    
+    
+    func fetchSocialApps(completion: @escaping ([SocialApps]?, Error?) -> Void) {
         let urlString = "https://api.letsbuildthatapp.com/appstore/social"
+        
+        fetchGenericJSONData(urlString: urlString, completion: completion)
+    }
+    
+    
+    //declare my generic json function here
+    func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { data, urlResponse, error in
             
             if let error = error {
                 print("Failed to featch apps", error)
-                completed([], nil)
+                completion(nil, error )
                 return
             }
             
             guard let data = data else { return }
             
             do {
-                let socialResult = try JSONDecoder().decode([SocialApps].self, from: data)
-                completed(socialResult, nil)
+                let socialResult = try JSONDecoder().decode(T.self, from: data)
+                completion(socialResult, nil)
             } catch let jsonErr {
                 print("Failed to decode json:", jsonErr)
-                completed([], jsonErr)
+                completion(nil, jsonErr)
             }
         }
         .resume()
