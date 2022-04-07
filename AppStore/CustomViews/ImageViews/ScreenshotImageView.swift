@@ -1,5 +1,5 @@
 //
-//  ScreenshotView.swift
+//  ScreenshotImageView.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 3/25/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScreenshotView: UIImageView {
+class ScreenshotImageView: UIImageView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

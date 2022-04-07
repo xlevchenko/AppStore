@@ -1,5 +1,5 @@
 //
-//  AppsHeaderHorizontalVC.swift
+//  AppsHeaderHorizontalController.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 4/3/22.
@@ -7,14 +7,15 @@
 
 import UIKit
 
-class AppsHeaderHorizontalVC: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
+private let appsHeaderID = "socialHeaderCell"
+
+class AppsSocialHeaderHorizontalController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
     
-    let cellID      = "cellID"
-    var socialApps  = [SocialApps]()
+    var socialApps  = [SocialResult]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(AppsHeaderAppCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView.register(AppsSocialHeaderCell.self, forCellWithReuseIdentifier: appsHeaderID)
     }
     
     
@@ -29,7 +30,7 @@ class AppsHeaderHorizontalVC: HorizontalSnappingController, UICollectionViewDele
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! AppsHeaderAppCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appsHeaderID, for: indexPath) as! AppsSocialHeaderCell
         let apps = self.socialApps[indexPath.item]
         cell.companyLable.text = apps.name
         cell.titleLable.text = apps.tagline

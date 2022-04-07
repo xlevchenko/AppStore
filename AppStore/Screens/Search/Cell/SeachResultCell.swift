@@ -9,18 +9,16 @@ import UIKit
 
 class SeachResultCell: UICollectionViewCell {
     
-    static let reuseID      = "searchCell"
-    
-    let appIconImageView    = AppIconImageView(frame: .zero)
-    var nameLable           = AppTitleLable(text: "", textAlignment: .left, fontSize: 18)
-    var categoryLable       = AppSecondaryLable(text: "", fontSize: 15)
-    var ratingsLable        = AppSecondaryLable(text: "", fontSize: 14)
+    let appIconImageView    = IconImageView(frame: .zero)
+    var nameLable           = TitleLable(text: "", textAlignment: .left, fontSize: 18)
+    var categoryLable       = SecondaryTitleLable(text: "", fontSize: 15)
+    var ratingsLable        = SecondaryTitleLable(text: "", fontSize: 14)
     let getButton           = GetButton(type: .system)
     
-    let screenshot1         = ScreenshotView(frame: .zero)
-    let screenshot2         = ScreenshotView(frame: .zero)
-    let screenshot3         = ScreenshotView(frame: .zero)
-
+    let screenshot1         = ScreenshotImageView(frame: .zero)
+    let screenshot2         = ScreenshotImageView(frame: .zero)
+    let screenshot3         = ScreenshotImageView(frame: .zero)
+    
     var appResult: Result! {
         didSet {
             nameLable.text      = appResult.trackName
@@ -32,11 +30,11 @@ class SeachResultCell: UICollectionViewCell {
             screenshot1.sd_setImage(with: URL(string: appResult.screenshotUrls[0]))
             
             if appResult.screenshotUrls.count > 1 {
-            screenshot2.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
+                screenshot2.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
             }
             
             if appResult.screenshotUrls.count > 2 {
-            screenshot3.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
+                screenshot3.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
             }
         }
     }

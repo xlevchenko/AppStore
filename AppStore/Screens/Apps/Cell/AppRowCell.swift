@@ -9,12 +9,10 @@ import UIKit
 
 class AppRowCell: UICollectionViewCell {
     
-    let imageView = AppIconImageView(frame: .zero)
-    
-    let nameLable = AppTitleLable(text: "Name App", textAlignment: .left, fontSize: 20)
-    let companyLable = AppSecondaryLable(text: "Company name", fontSize: 16)
-    
-    let getButton = GetButton(type: .system)
+    let imageView       = IconImageView(frame: .zero)
+    let nameLable       = TitleLable(text: "Name App", textAlignment: .left, fontSize: 20)
+    let companyLable    = SecondaryTitleLable(text: "Company name", fontSize: 16)
+    let getButton       = GetButton(type: .system)
     
     
     override init(frame: CGRect) {

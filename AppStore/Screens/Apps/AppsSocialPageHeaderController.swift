@@ -1,5 +1,5 @@
 //
-//  AppsPageHeaderVC.swift
+//  AppsPageHeaderController.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 4/3/22.
@@ -7,10 +7,9 @@
 
 import UIKit
 
-class AppsPageHeaderVC: UICollectionReusableView {
+class AppsSocialPageHeaderController: UICollectionReusableView {
         
-    let appHeaderHorizontalController = AppsHeaderHorizontalVC()
-    
+    let appHeaderHorizontalController = AppsSocialHeaderHorizontalController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

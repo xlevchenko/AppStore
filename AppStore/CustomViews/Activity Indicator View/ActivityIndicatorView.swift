@@ -14,14 +14,16 @@ class ActivityIndicatorView: UIActivityIndicatorView {
         configure()
     }
     
+    
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     func configure() {
-        style = .large
-        color = .black
         startAnimating()
-        hidesWhenStopped = true
+        style               = .large
+        color               = .black
+        hidesWhenStopped    = true
     }
 }

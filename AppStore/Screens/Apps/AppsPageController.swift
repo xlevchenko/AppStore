@@ -1,5 +1,5 @@
 //
-//  AppsVC.swift
+//  AppsPageController.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 3/22/22.
@@ -7,22 +7,23 @@
 
 import UIKit
 
-class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
+private let socialHeaderID    = "socialHeaderCell"
+private let appID             = "appCell"
 
-    let headerID = "headerID"
+class AppsPageController: BaseListViewController, UICollectionViewDelegateFlowLayout {
     
     let activityIndicatorView = ActivityIndicatorView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(AppsCell.self, forCellWithReuseIdentifier: AppsCell.appReuseID)
-        collectionView.register(AppsPageHeaderVC.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
+        collectionView.register(AppsSocialPageHeaderController.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: socialHeaderID)
+        collectionView.register(AppsCell.self, forCellWithReuseIdentifier: appID)
         
         fetchData()
         configureActivityIndicator()
     }
 
-    var socialApps = [SocialApps]()
+    var socialApps = [SocialResult]()
     var groupsResult = [AppsResult]()
     
     
@@ -33,6 +34,16 @@ class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
         
         //help you sync your data fetches together
         let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        NetworkManager.shared.fetchSocialApps { app, error in
+            
+            dispatchGroup.leave()
+            if let error = error {
+                print("Failed to featch apps", error)
+            }
+            self.socialApps = app ?? []
+        }
         
         dispatchGroup.enter()
         NetworkManager.shared.fetchTopFree { appsResult, error in
@@ -54,16 +65,6 @@ class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
             group2 = appsResult
         }
         
-        dispatchGroup.enter()
-        NetworkManager.shared.fetchSocialApps { app, error in
-            
-            dispatchGroup.leave()
-            if let error = error {
-                print("Failed to featch apps", error)
-            }
-            self.socialApps = app ?? []
-        }
-        
         //completion
         dispatchGroup.notify(queue: .main) {
             self.activityIndicatorView.stopAnimating()
@@ -82,7 +83,7 @@ class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
     
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerID, for: indexPath) as! AppsPageHeaderVC
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: socialHeaderID, for: indexPath) as! AppsSocialPageHeaderController
         header.appHeaderHorizontalController.socialApps = self.socialApps
         header.appHeaderHorizontalController.collectionView.reloadData()
         return header
@@ -100,7 +101,7 @@ class AppsPageVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsCell.appReuseID, for: indexPath) as! AppsCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appID, for: indexPath) as! AppsCell
         let appsGroups = groupsResult[indexPath.item]
         cell.titleLabel.text = appsGroups.feed.title
         cell.horizontalController.appResult = appsGroups

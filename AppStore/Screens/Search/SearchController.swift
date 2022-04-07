@@ -1,5 +1,5 @@
 //
-//  SearchVC.swift
+//  SearchController.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 3/22/22.
@@ -7,16 +7,18 @@
 
 import UIKit
 
-class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+private let searchID      = "searchCell"
+
+class SearchController: BaseListViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate var appResults          = [Result]()
     fileprivate let searchComtroller    = UISearchController(searchResultsController: nil)
-    fileprivate let searchLable         = AppTitleLable(text: "Please enter search term above..", textAlignment: .center, fontSize: 20)
+    fileprivate let searchLable         = TitleLable(text: "Please enter search term above..", textAlignment: .center, fontSize: 20)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(SeachResultCell.self, forCellWithReuseIdentifier: SeachResultCell.reuseID)
+        collectionView.register(SeachResultCell.self, forCellWithReuseIdentifier: searchID)
         setupSearchBar()
         collectionView.addSubview(searchLable)
         searchLable.fillSuperview(padding: .init(top: 100, left: 40, bottom: 0, right: 50))
@@ -78,7 +80,7 @@ class SearchVC: BaseListViewController, UICollectionViewDelegateFlowLayout, UISe
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeachResultCell.reuseID, for: indexPath) as! SeachResultCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchID, for: indexPath) as! SeachResultCell
         cell.appResult = appResults[indexPath.item]        
         return cell
     }   

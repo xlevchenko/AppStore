@@ -1,5 +1,5 @@
 //
-//  AppTitleLable.swift
+//  TitleLable.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 3/24/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppTitleLable: UILabel {
+class TitleLable: UILabel {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,9 +22,9 @@ class AppTitleLable: UILabel {
     
     convenience init(text: String, textAlignment: NSTextAlignment, fontSize: CGFloat) {
         self.init(frame: .zero)
-        self.text = text
-        self.textAlignment = textAlignment
-        self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        self.text           = text
+        self.textAlignment  = textAlignment
+        self.font           = UIFont.systemFont(ofSize: fontSize, weight: .bold)
     }
     
     

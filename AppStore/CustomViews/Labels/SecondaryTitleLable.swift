@@ -1,5 +1,5 @@
 //
-//  AppSecondaryLable.swift
+//  SecondaryTitleLable.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 3/24/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppSecondaryLable: UILabel {
+class SecondaryTitleLable: UILabel {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

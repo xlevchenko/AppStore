@@ -33,7 +33,7 @@ class NetworkManager {
     }
     
     
-    func fetchSocialApps(completion: @escaping ([SocialApps]?, Error?) -> Void) {
+    func fetchSocialApps(completion: @escaping ([SocialResult]?, Error?) -> Void) {
         let urlString = "https://api.letsbuildthatapp.com/appstore/social"
         
         fetchGenericJSONData(urlString: urlString, completion: completion)

@@ -1,5 +1,5 @@
 //
-//  AppIconImageView.swift
+//  IconImageView.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 3/26/22.
@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class AppIconImageView: UIImageView {
+class IconImageView: UIImageView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -1,5 +1,5 @@
 //
-//  AppsHorizontalVC.swift
+//  AppsHorizontalController.swift
 //  AppStore
 //
 //  Created by Olexsii Levchenko on 4/1/22.
@@ -7,19 +7,18 @@
 
 import UIKit
 
-private let reuseIdentifier = "horizontalCell"
+private let appHorizontalID = "appHorizontalCell"
 
-class AppsHorizontalVC: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
+class AppsHorizontalController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
     
     var appResult: AppsResult?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView!.register(AppRowCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(AppRowCell.self, forCellWithReuseIdentifier: appHorizontalID)
         collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
     }
-    
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -28,7 +27,7 @@ class AppsHorizontalVC: HorizontalSnappingController, UICollectionViewDelegateFl
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AppRowCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appHorizontalID, for: indexPath) as! AppRowCell
         let app = appResult?.feed.results[indexPath.item]
         cell.nameLable.text = app?.name
         cell.companyLable.text = app?.artistName
