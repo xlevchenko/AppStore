@@ -9,7 +9,7 @@ import UIKit
 
 private let reuseIdentifier = "horizontalCell"
 
-class AppsHorizontalVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
+class AppsHorizontalVC: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
     
     var appResult: AppsResult?
     
@@ -17,10 +17,7 @@ class AppsHorizontalVC: BaseListViewController, UICollectionViewDelegateFlowLayo
         super.viewDidLoad()
         
         self.collectionView!.register(AppRowCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
+        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
     }
     
     
@@ -55,6 +52,6 @@ class AppsHorizontalVC: BaseListViewController, UICollectionViewDelegateFlowLayo
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: topBottomPadding, left: 16, bottom: topBottomPadding, right: 16)
+        return .init(top: topBottomPadding, left: 0, bottom: topBottomPadding, right: 0)
     }
 }

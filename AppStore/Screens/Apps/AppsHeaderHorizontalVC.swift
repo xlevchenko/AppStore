@@ -7,16 +7,14 @@
 
 import UIKit
 
-class AppsHeaderHorizontalVC: BaseListViewController, UICollectionViewDelegateFlowLayout {
+class AppsHeaderHorizontalVC: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
     
     let cellID      = "cellID"
     var socialApps  = [SocialApps]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView.register(AppsHeaderAppCell.self, forCellWithReuseIdentifier: cellID)
-        configure()
     }
     
     
@@ -37,12 +35,5 @@ class AppsHeaderHorizontalVC: BaseListViewController, UICollectionViewDelegateFl
         cell.titleLable.text = apps.tagline
         cell.imageView.sd_setImage(with: URL(string: apps.imageUrl))
         return cell
-    }
-    
-    
-    func configure() {
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
     }
 }

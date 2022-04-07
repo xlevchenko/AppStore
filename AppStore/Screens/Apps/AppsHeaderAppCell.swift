@@ -35,6 +35,6 @@ class AppsHeaderAppCell: UICollectionViewCell {
         let stackView = VerticalStackView(arrangedSubviews: [companyLable, titleLable, categoryLable, imageView])
         addSubview(stackView)
         stackView.spacing = 5
-        stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 0, right: 6))
+        stackView.fillSuperview(padding: .init(top: 0, left: 16, bottom: 0, right: 4))
     }
 }
