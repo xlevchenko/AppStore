@@ -14,6 +14,7 @@ class AppsPageController: BaseListViewController, UICollectionViewDelegateFlowLa
     
     let activityIndicatorView = ActivityIndicatorView(frame: .zero)
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(AppsSocialPageHeaderController.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: socialHeaderID)
@@ -106,6 +107,11 @@ class AppsPageController: BaseListViewController, UICollectionViewDelegateFlowLa
         cell.titleLabel.text = appsGroups.feed.title
         cell.horizontalController.appResult = appsGroups
         cell.horizontalController.collectionView.reloadData()
+        cell.horizontalController.didSelectHandler = { [weak self] feedResult in
+            let appDetail = AppDetailController()
+            appDetail.navigationItem.title = feedResult.name
+            self?.navigationController?.pushViewController(appDetail, animated: true)
+        }
         return cell
     }
     
