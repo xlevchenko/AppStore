@@ -18,6 +18,10 @@ class AppRowCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        imageView.constrainWidth(constant: 64)
+        imageView.constrainHeight(constant: 64)
+        getButton.constrainWidth(constant: 80)
+        getButton.constrainHeight(constant: 32)
     }
     
     

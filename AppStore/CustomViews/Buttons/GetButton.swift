@@ -28,8 +28,6 @@ class GetButton: UIButton {
         setTitle("GET", for: .normal)
         setTitleColor(.systemBlue, for: .normal)
         
-        translatesAutoresizingMaskIntoConstraints               = false
-        widthAnchor.constraint(equalToConstant: 80).isActive    = true
-        heightAnchor.constraint(equalToConstant: 32).isActive   = true
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

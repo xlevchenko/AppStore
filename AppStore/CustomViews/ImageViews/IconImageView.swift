@@ -23,8 +23,6 @@ class IconImageView: UIImageView {
         layer.cornerRadius  = 14
         clipsToBounds       = true
         
-        translatesAutoresizingMaskIntoConstraints               = false
-        widthAnchor.constraint(equalToConstant: 64).isActive    = true
-        heightAnchor.constraint(equalToConstant: 64).isActive   = true
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

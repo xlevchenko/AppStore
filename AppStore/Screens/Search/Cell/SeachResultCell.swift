@@ -43,6 +43,7 @@ class SeachResultCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureStackView()
+        configure()
     }
     
     
@@ -50,6 +51,12 @@ class SeachResultCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure() {
+        appIconImageView.constrainHeight(constant: 64)
+        appIconImageView.constrainWidth(constant: 64)
+        getButton.constrainWidth(constant: 80)
+        getButton.constrainHeight(constant: 32)
+    }
     
     func configureStackView() {
         let lableStackView                  = VerticalStackView(arrangedSubviews: [nameLable, categoryLable, ratingsLable])
