@@ -20,7 +20,7 @@ class IconImageView: UIImageView {
     }
     
     private func configure() {
-        layer.cornerRadius  = 14
+        layer.cornerRadius  = 18
         clipsToBounds       = true
         
         translatesAutoresizingMaskIntoConstraints = false

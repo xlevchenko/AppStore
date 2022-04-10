@@ -9,6 +9,15 @@ import UIKit
 
 class AppDetailCell: UICollectionViewCell {
     
+    var app: Result! {
+        didSet {
+            nameLable.text = app?.trackName
+            releaseNotesLable.text = app?.releaseNotes
+            appIconImageView.sd_setImage(with: URL(string: app?.artworkUrl100 ?? ""))
+            priceButton.setTitle(app?.formattedPrice, for: .normal)
+        }
+    }
+    
     let appIconImageView = IconImageView(frame: .zero)
     let nameLable = TitleLable(text: "TikTok", textAlignment: .left, fontSize: 16)
     let priceButton = GetButton(frame: .zero)
@@ -27,6 +36,8 @@ class AppDetailCell: UICollectionViewCell {
     
     func configure() {
         nameLable.numberOfLines = 2
+        releaseNotesLable.numberOfLines = 5
+        releaseNotesLable.font = UIFont.systemFont(ofSize: 18)
         
         appIconImageView.backgroundColor = .systemRed
         appIconImageView.constrainWidth(constant: 140)
