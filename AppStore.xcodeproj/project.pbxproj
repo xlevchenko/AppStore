@@ -41,6 +41,9 @@
 		60D5F1BC27F25A3300980783 /* NetworkManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D5F1BB27F25A3300980783 /* NetworkManagers.swift */; };
 		60D6CC8027EBA56800C7D9C6 /* SeachResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC7F27EBA56800C7D9C6 /* SeachResultCell.swift */; };
 		60D6CC8927EBB2FE00C7D9C6 /* GetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D6CC8827EBB2FE00C7D9C6 /* GetButton.swift */; };
+		60EAD0FE2804B1FC00B654F0 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EAD0FD2804B1FC00B654F0 /* PreviewCell.swift */; };
+		60EAD1002804B55100B654F0 /* PreviewScreenshotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EAD0FF2804B55100B654F0 /* PreviewScreenshotsController.swift */; };
+		60EAD1022804B91100B654F0 /* ScreenshotsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EAD1012804B91100B654F0 /* ScreenshotsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +83,9 @@
 		60D5F1BB27F25A3300980783 /* NetworkManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagers.swift; sourceTree = "<group>"; };
 		60D6CC7F27EBA56800C7D9C6 /* SeachResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachResultCell.swift; sourceTree = "<group>"; };
 		60D6CC8827EBB2FE00C7D9C6 /* GetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetButton.swift; sourceTree = "<group>"; };
+		60EAD0FD2804B1FC00B654F0 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCell.swift; sourceTree = "<group>"; };
+		60EAD0FF2804B55100B654F0 /* PreviewScreenshotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsController.swift; sourceTree = "<group>"; };
+		60EAD1012804B91100B654F0 /* ScreenshotsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotsCell.swift; sourceTree = "<group>"; };
 		AE1F5B0F49ECC8C51E3C0F4F /* Pods_AppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95ED080CF0812E856F3E133 /* Pods-AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.release.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				605E356728006BE600C1FDC0 /* AppDetailController.swift */,
+				60EAD0FF2804B55100B654F0 /* PreviewScreenshotsController.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -251,6 +258,8 @@
 				6065D5B527FA21C30012D07C /* AppsSocialHeaderCell.swift */,
 				60896F9F27F8D4CA00EE8E91 /* AppRowCell.swift */,
 				60B198A52801F95600E8D25E /* AppDetailCell.swift */,
+				60EAD0FD2804B1FC00B654F0 /* PreviewCell.swift */,
+				60EAD1012804B91100B654F0 /* ScreenshotsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 				607871DB27EC60C700A2B6BD /* SecondaryTitleLable.swift in Sources */,
 				6096DB4627EA4881009D45BA /* Constant.swift in Sources */,
 				6066709927F789A700881F53 /* AppsHorizontalController.swift in Sources */,
+				60EAD1002804B55100B654F0 /* PreviewScreenshotsController.swift in Sources */,
 				606F458027EE35D0008C439C /* ScreenshotImageView.swift in Sources */,
 				6058842E27EA2AE100E885D1 /* SearchController.swift in Sources */,
 				6065D5B427FA1E8B0012D07C /* AppsSocialHeaderHorizontalController.swift in Sources */,
@@ -442,8 +452,10 @@
 				60D6CC8927EBB2FE00C7D9C6 /* GetButton.swift in Sources */,
 				60D6CC8027EBA56800C7D9C6 /* SeachResultCell.swift in Sources */,
 				607EDC7D27EF6FA6008B7136 /* IconImageView.swift in Sources */,
+				60EAD1022804B91100B654F0 /* ScreenshotsCell.swift in Sources */,
 				6065D5B227FA103B0012D07C /* AppsSocialPageHeaderController.swift in Sources */,
 				6066709527F626B300881F53 /* BaseListViewController.swift in Sources */,
+				60EAD0FE2804B1FC00B654F0 /* PreviewCell.swift in Sources */,
 				60896FA027F8D4CA00EE8E91 /* AppRowCell.swift in Sources */,
 				6058842C27EA2AC900E885D1 /* TodayVC.swift in Sources */,
 				60740E6A27FB61F200220032 /* AppsResult.swift in Sources */,
