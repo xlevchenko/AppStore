@@ -49,6 +49,7 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewID, for: indexPath) as! PreviewCell
+            cell.horizontalController.app = self.app
             return cell
         }
     }
@@ -63,7 +64,7 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
             let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
             return .init(width: view.frame.width, height: estimatedSize.height)
         } else {
-            return .init(width: view.frame.width, height: 500)
+            return .init(width: view.frame.width, height: 650)
         }
         
         

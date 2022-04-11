@@ -9,12 +9,11 @@ import UIKit
 
 class PreviewCell: UICollectionViewCell {
     
-    
+    let previewLable = TitleLable(text: "Preview", textAlignment: .left, fontSize: 20)
     let horizontalController = PreviewScreenshotsController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
         configure()
     }
     
@@ -23,8 +22,11 @@ class PreviewCell: UICollectionViewCell {
     }
     
     func configure() {
+        addSubview(previewLable)
+        previewLable.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor,
+                            padding: .init(top: 0, left: 20, bottom: 0, right: 20))
         addSubview(horizontalController.view)
-        horizontalController.view.fillSuperview()
+        horizontalController.view.anchor(top: previewLable.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 20, left: 0, bottom: 0, right: 0))
     }
     
 }
