@@ -9,6 +9,7 @@ import UIKit
 
 let detailID    = "detailCell"
 let previewID   = "previewCell"
+let reviewID    = "reviewCell"
 
 class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowLayout {
     
@@ -34,11 +35,12 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
         super.viewDidLoad()
         collectionView.register(AppDetailCell.self, forCellWithReuseIdentifier: detailID)
         collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: previewID)
+        collectionView.register(ReviewRowCell.self, forCellWithReuseIdentifier: reviewID)
         navigationItem.largeTitleDisplayMode = .never
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -47,14 +49,19 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailID, for: indexPath) as! AppDetailCell
             cell.app = app
             return cell
-        } else {
+        } else if indexPath.item == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewID, for: indexPath) as! PreviewCell
             cell.horizontalController.app = self.app
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewID, for: indexPath)
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var height: CGFloat = 200
         
         if indexPath.item == 0 {
             let dummyCell = AppDetailCell(frame: .init(x: 0, y: 0, width: view.frame.width, height: 1000))
@@ -62,11 +69,13 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
             dummyCell.layoutIfNeeded()
             
             let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
-            return .init(width: view.frame.width, height: estimatedSize.height)
+            height = estimatedSize.height
+        } else if indexPath.item == 1 {
+            height = 650
         } else {
-            return .init(width: view.frame.width, height: 650)
+            height = 250
         }
         
-        
+        return .init(width: view.frame.width, height: height)
     }
 }
