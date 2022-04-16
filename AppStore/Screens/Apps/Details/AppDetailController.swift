@@ -25,10 +25,26 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
                     self.collectionView.reloadData()
                 }
             }
+            let reviewUrl = "https://itunes.apple.com/rss/customerreviews/id=\(appId ?? "")/json"
+            NetworkManager.shared.fetchGenericJSONData(urlString: reviewUrl) { (reviews: Review?, error) in
+                
+                if let error = error {
+                    print("Failed to featch apps", error)
+                    return
+                }
+                
+                self.reviews = reviews
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
         }
     }
     
+    
     var app: Result?
+    var reviews: Review?
     
     
     override func viewDidLoad() {
@@ -54,7 +70,8 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
             cell.horizontalController.app = self.app
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewID, for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewID, for: indexPath) as! ReviewRowCell
+            cell.reviewController.reviews = self.reviews
             return cell
         }
     }
