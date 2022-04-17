@@ -34,7 +34,9 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
                 }
                 
                 self.reviews = reviews
-                
+                reviews?.feed.entry.forEach({ star in
+                    print(star.rating)
+                })
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
