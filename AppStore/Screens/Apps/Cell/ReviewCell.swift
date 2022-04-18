@@ -11,8 +11,19 @@ class ReviewCell: UICollectionViewCell {
     
     let titleLabel = TitleLable(text: "Review & Reting", textAlignment: .left, fontSize: 18)
     let authorLabel = SecondaryTitleLable(text: "Olexsi Levchenko", fontSize: 16)
-    let starLabel = TitleLable(text: "Stars", textAlignment: .left, fontSize: 14)
     let bodyLabel = TitleLable(text: "Body Label\nBody Label\nBody Label\nBody Label\n", textAlignment: .left, fontSize: 16)
+    
+    let starsStackView: UIStackView = {
+        var arrangeSubviews = [UIView]()
+        (0..<5).forEach { _ in
+            let imageViews = UIImageView(image: UIImage(systemName: "star.fill"))
+            imageViews.tintColor = .systemOrange
+            arrangeSubviews.append(imageViews)
+        }
+        let stackView = UIStackView(arrangedSubviews: arrangeSubviews)
+        return stackView
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,14 +41,13 @@ class ReviewCell: UICollectionViewCell {
     func configure() {
         authorLabel.font = UIFont.systemFont(ofSize: 16)
         authorLabel.textAlignment = .right
-        starLabel.font = UIFont.systemFont(ofSize: 14)
         bodyLabel.font = UIFont.systemFont(ofSize: 14)
         bodyLabel.numberOfLines = 0
         titleLabel.setContentCompressionResistancePriority(.init(rawValue: 0), for: .horizontal)
         
         let stackView = VerticalStackView(arrangedSubviews: [
             UIStackView(arrangedSubviews: [titleLabel, authorLabel], customSpacing: 8),
-            starLabel,
+            UIStackView(arrangedSubviews: [starsStackView, UIView()]),
             bodyLabel
         ], spacing: 12)
         addSubview(stackView)
