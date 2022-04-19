@@ -14,7 +14,6 @@ class ScreenshotsCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        //screenshotView.backgroundColor = .systemYellow
     }
     
     required init?(coder: NSCoder) {

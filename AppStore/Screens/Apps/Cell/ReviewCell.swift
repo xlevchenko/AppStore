@@ -41,8 +41,8 @@ class ReviewCell: UICollectionViewCell {
     func configure() {
         authorLabel.font = UIFont.systemFont(ofSize: 16)
         authorLabel.textAlignment = .right
-        bodyLabel.font = UIFont.systemFont(ofSize: 14)
-        bodyLabel.numberOfLines = 0
+        bodyLabel.font = UIFont.systemFont(ofSize: 18)
+        bodyLabel.numberOfLines = 7
         titleLabel.setContentCompressionResistancePriority(.init(rawValue: 0), for: .horizontal)
         
         let stackView = VerticalStackView(arrangedSubviews: [
@@ -50,7 +50,9 @@ class ReviewCell: UICollectionViewCell {
             UIStackView(arrangedSubviews: [starsStackView, UIView()]),
             bodyLabel
         ], spacing: 12)
+        
         addSubview(stackView)
-        stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20 ))
+        stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor,
+                         padding: .init(top: 20, left: 20, bottom: 0, right: 20))
     }
 }
