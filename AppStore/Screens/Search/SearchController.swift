@@ -42,6 +42,12 @@ class SearchController: BaseListViewController, UICollectionViewDelegateFlowLayo
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
             
             NetworkManager.shared.fetchITunesApps(searchTerm: searchText) { res, error in
+                
+                if let error = error {
+                    print("Failed to featch apps", error)
+                    return
+                }
+                
                 self.appResults = res?.results ?? []
                 
                 DispatchQueue.main.async {
@@ -83,6 +89,13 @@ class SearchController: BaseListViewController, UICollectionViewDelegateFlowLayo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchID, for: indexPath) as! SeachResultCell
         cell.appResult = appResults[indexPath.item]        
         return cell
-    }   
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let appDetailController = AppDetailController()
+        let appId = appResults[indexPath.item].trackId
+        appDetailController.appId = String(appId)
+        navigationController?.pushViewController(appDetailController, animated: true)
+    }
 }
 

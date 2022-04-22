@@ -17,7 +17,7 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
         didSet {
             let urlString = "https://itunes.apple.com/lookup?id=\(appId ?? "")"
             NetworkManager.shared.fetchGenericJSONData(urlString: urlString) { (result: SearchResult?, error) in
-               
+                
                 let app = result?.results.first
                 self.app = app
                 
@@ -33,10 +33,10 @@ class AppDetailController: BaseListViewController, UICollectionViewDelegateFlowL
                     return
                 }
                 
-                self.reviews = reviews
                 reviews?.feed.entry.forEach({ star in
                     print(star.rating)
                 })
+                
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
