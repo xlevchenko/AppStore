@@ -14,9 +14,9 @@ class BaseTabBarController: UITabBarController {
         
         UITabBar.appearance().backgroundColor = .secondarySystemBackground
         viewControllers = [
+            createVC(viewController: TodayController(), title: "Today", image: SFSymbols.today),
             createVC(viewController: AppsPageController(), title: "Apps", image: SFSymbols.apps),
-            createVC(viewController: SearchController(), title: "Search", image: SFSymbols.search),
-            createVC(viewController: TodayVC(), title: "Today", image: SFSymbols.today)
+            createVC(viewController: SearchController(), title: "Search", image: SFSymbols.search)
         ]
     }
    
