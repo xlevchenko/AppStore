@@ -20,7 +20,34 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Animate fullscreen somehow...")
+        let redView = UIView()
+        redView.backgroundColor = .systemRed
+        redView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
+        view.addSubview(redView)
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        
+        //absolute coordindates of cell
+        guard let startiningFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
+        
+        self.startiningFrame = startiningFrame
+        redView.frame = startiningFrame
+        redView.layer.cornerRadius = 16
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            redView.frame = self.view.frame
+        }, completion: nil)
+    }
+    
+    var startiningFrame: CGRect?
+    
+    @objc func handleRemoveRedView(gesture: UITapGestureRecognizer) {
+        //access staringFrame
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            gesture.view?.frame = self.startiningFrame ?? .zero
+        }, completion: { _ in
+            gesture.view?.removeFromSuperview()
+        })
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
