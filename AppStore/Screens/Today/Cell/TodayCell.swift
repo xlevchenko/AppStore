@@ -9,7 +9,7 @@ import UIKit
 
 class TodayCell: UICollectionViewCell {
     
-    let imageView = UIImageView(image: UIImage(named: "saul"))
+    let imageView = UIImageView(image: UIImage(named: "angri"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +25,6 @@ class TodayCell: UICollectionViewCell {
     func configure() {
         addSubview(imageView)
         imageView.contentMode = .scaleToFill
-        imageView.centerInSuperview(size: .init(width: 250, height: 250))
+        imageView.centerInSuperview(size: .init(width: 300, height: 360))
     }
 }
