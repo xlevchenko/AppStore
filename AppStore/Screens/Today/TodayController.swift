@@ -18,15 +18,24 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         collectionView.register(TodayCell.self, forCellWithReuseIdentifier: todayID)
     }
     
-    var fullScreenController: UIViewController!
+    var fullScreenController: FullScreenController!
+    
+    var topConstraint: NSLayoutConstraint?
+    var leadingConstraint: NSLayoutConstraint?
+    var widthConstraint: NSLayoutConstraint?
+    var heightConstraint: NSLayoutConstraint?
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let fullScreenController = FullScreenController()        
-        let mainView = fullScreenController.view!
-        mainView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
+        let fullScreenController = FullScreenController()
+        fullScreenController.dismissHandler = {
+            self.handleRemoveView()
+        }
         
-        view.addSubview(mainView)
+        let fullscreenView = fullScreenController.view!
+        fullscreenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveView)))
+        
+        view.addSubview(fullscreenView)
         addChild(fullScreenController)
         self.fullScreenController = fullScreenController
         
@@ -35,11 +44,25 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         //absolute coordindates of cell
         guard let startiningFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
         self.startiningFrame = startiningFrame
-        mainView.frame = startiningFrame
-        mainView.layer.cornerRadius = 16
+        
+        fullscreenView.translatesAutoresizingMaskIntoConstraints = false
+        topConstraint = fullscreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startiningFrame.origin.y)
+        leadingConstraint = fullscreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startiningFrame.origin.x)
+        widthConstraint = fullscreenView.widthAnchor.constraint(equalToConstant: startiningFrame.width)
+        heightConstraint = fullscreenView.heightAnchor.constraint(equalToConstant: startiningFrame.height)
+        [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach ({ $0?.isActive = true })
+        
+        self.view.layoutIfNeeded()
+        fullscreenView.layer.cornerRadius = 16
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-            mainView.frame = self.view.frame
+           
+            self.topConstraint?.constant = 0
+            self.leadingConstraint?.constant = 0
+            self.widthConstraint?.constant = self.view.frame.width
+            self.heightConstraint?.constant = self.view.frame.height
+            
+            self.view.layoutIfNeeded() // starting animation
             self.tabBarController?.tabBar.frame.origin.y += 100
         }, completion: nil)
     }
@@ -48,14 +71,24 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     var startiningFrame: CGRect?
     
     
-    @objc func handleRemoveRedView(gesture: UITapGestureRecognizer) {
+    @objc func handleRemoveView() {
         //access staringFrame
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-            gesture.view?.frame = self.startiningFrame ?? .zero
+
+            guard let startiningFrame = self.startiningFrame else { return }
+            self.topConstraint?.constant = startiningFrame.origin.y
+            self.leadingConstraint?.constant = startiningFrame.origin.x
+            self.widthConstraint?.constant = startiningFrame.width
+            self.heightConstraint?.constant = startiningFrame.height
+            self.view.layoutIfNeeded() // finish animation
+            
+            self.fullScreenController.tableView.contentOffset = .zero
             self.tabBarController?.tabBar.frame.origin.y -= 100
+        
         }, completion: { _ in
-            gesture.view?.removeFromSuperview()
+            self.fullScreenController.view.removeFromSuperview()
             self.fullScreenController.removeFromParent()
+            
         })
     }
     

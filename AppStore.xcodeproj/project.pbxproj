@@ -35,6 +35,8 @@
 		606F458227EE5C20008C439C /* UIView + Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606F458127EE5C20008C439C /* UIView + Layout.swift */; };
 		6070C4C527FE3E5D00F9FD64 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6070C4C427FE3E5D00F9FD64 /* HorizontalSnappingController.swift */; };
 		60740E6A27FB61F200220032 /* AppsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60740E6927FB61F200220032 /* AppsResult.swift */; };
+		60743C1728197D20009B3EDE /* FullScreenHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60743C1628197D20009B3EDE /* FullScreenHeaderCell.swift */; };
+		60743C19281982AB009B3EDE /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60743C18281982AB009B3EDE /* CloseButton.swift */; };
 		607871D927EC5EBE00A2B6BD /* TitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607871D827EC5EBE00A2B6BD /* TitleLable.swift */; };
 		607871DB27EC60C700A2B6BD /* SecondaryTitleLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607871DA27EC60C700A2B6BD /* SecondaryTitleLable.swift */; };
 		607EDC7B27EF0FC4008B7136 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607EDC7A27EF0FC4008B7136 /* VerticalStackView.swift */; };
@@ -85,6 +87,8 @@
 		606F458127EE5C20008C439C /* UIView + Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Layout.swift"; sourceTree = "<group>"; };
 		6070C4C427FE3E5D00F9FD64 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
 		60740E6927FB61F200220032 /* AppsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsResult.swift; sourceTree = "<group>"; };
+		60743C1628197D20009B3EDE /* FullScreenHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenHeaderCell.swift; sourceTree = "<group>"; };
+		60743C18281982AB009B3EDE /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		607871D827EC5EBE00A2B6BD /* TitleLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLable.swift; sourceTree = "<group>"; };
 		607871DA27EC60C700A2B6BD /* SecondaryTitleLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryTitleLable.swift; sourceTree = "<group>"; };
 		607EDC7A27EF0FC4008B7136 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 			children = (
 				60A0C516281738F100ECF74A /* TodayCell.swift */,
 				601CF6082818792D0036EA30 /* FullScreenCell.swift */,
+				60743C1628197D20009B3EDE /* FullScreenHeaderCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				60D6CC8827EBB2FE00C7D9C6 /* GetButton.swift */,
+				60743C18281982AB009B3EDE /* CloseButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -504,6 +510,8 @@
 				60896FA027F8D4CA00EE8E91 /* AppRowCell.swift in Sources */,
 				601C3E8A280611D200B3A595 /* ReviewCell.swift in Sources */,
 				6058842C27EA2AC900E885D1 /* TodayController.swift in Sources */,
+				60743C1728197D20009B3EDE /* FullScreenHeaderCell.swift in Sources */,
+				60743C19281982AB009B3EDE /* CloseButton.swift in Sources */,
 				60740E6A27FB61F200220032 /* AppsResult.swift in Sources */,
 				60B198A62801F95600E8D25E /* AppDetailCell.swift in Sources */,
 				6070C4C527FE3E5D00F9FD64 /* HorizontalSnappingController.swift in Sources */,
