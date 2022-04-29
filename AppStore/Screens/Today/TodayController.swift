@@ -10,13 +10,6 @@ import UIKit
 let todayID = "TodayCell"
 
 class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayout {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
-        collectionView.backgroundColor = .systemGray6
-        collectionView.register(TodayCell.self, forCellWithReuseIdentifier: todayID)
-    }
     
     var fullScreenController: FullScreenController!
     
@@ -25,9 +18,20 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     var widthConstraint: NSLayoutConstraint?
     var heightConstraint: NSLayoutConstraint?
     
+    var items = [TodayResult(categoty: "Game", title: "Angry Birds", image: UIImage(named: "angri")!, description: "Angry Birds is a 2009 casual puzzle video game developed by Rovio Entertainment.", backgroundColor: .white), TodayResult(categoty: "Holidays", title: "Travel on a Budget", image: UIImage(named: "travel")!, description: "Find out all you need to need to know on how to travel without packing everything!", backgroundColor: .systemYellow)]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
+        collectionView.backgroundColor = .systemGray6
+        collectionView.register(TodayCell.self, forCellWithReuseIdentifier: todayID)
+    }
+    
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let fullScreenController = FullScreenController()
+        fullScreenController.todayItem = items[indexPath.row]
         fullScreenController.dismissHandler = {
             self.handleRemoveView()
         }
@@ -94,12 +98,13 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return items.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: todayID, for: indexPath) as! TodayCell
+        cell.todayItem = items[indexPath.item]
         return cell
     }
     

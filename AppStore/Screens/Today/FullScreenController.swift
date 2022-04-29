@@ -10,6 +10,7 @@ import UIKit
 class FullScreenController: UITableViewController {
     
     var dismissHandler: (() -> ())?
+    var todayItem: TodayResult?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class FullScreenController: UITableViewController {
         if indexPath.item == 0 {
             let headerCell = FullScreenHeaderCell()
             headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+            headerCell.todayCell.todayItem = todayItem
             return headerCell
         }
         let cell = FullScreenCell()
