@@ -20,5 +20,6 @@ class CloseButton: UIButton {
     
     func configure() {
         setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        tintColor = .systemGray
     }
 }

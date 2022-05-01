@@ -17,8 +17,6 @@ class FullScreenController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         tableView.contentInsetAdjustmentBehavior = .never
-        //let height = UIApplication.shared.statusBarFrame.height
-        //tableView.contentInset = .init(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     
@@ -42,7 +40,7 @@ class FullScreenController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.item == 0 {
-            return 450
+            return 500
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }

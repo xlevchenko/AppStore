@@ -7,7 +7,8 @@
 
 import UIKit
 
-let todayID = "TodayCell"
+//let todayID = "todayCell"
+//let multipleID = "multipleCell"
 
 class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayout {
     
@@ -18,13 +19,17 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     var widthConstraint: NSLayoutConstraint?
     var heightConstraint: NSLayoutConstraint?
     
-    var items = [TodayResult(categoty: "Game", title: "Angry Birds", image: UIImage(named: "angri")!, description: "Angry Birds is a 2009 casual puzzle video game developed by Rovio Entertainment.", backgroundColor: .white), TodayResult(categoty: "Holidays", title: "Travel on a Budget", image: UIImage(named: "travel")!, description: "Find out all you need to need to know on how to travel without packing everything!", backgroundColor: .systemYellow)]
+    var items = [
+        TodayResult(categoty: "THE DAILY LIST", title: "Test-Drive These CarPlay App", image: UIImage(named: "angri")!, description: "", backgroundColor: .white, cellType: .multiple),
+        TodayResult(categoty: "Game", title: "Angry Birds", image: UIImage(named: "angri")!, description: "Angry Birds is a 2009 casual puzzle video game developed by Rovio Entertainment.", backgroundColor: .white, cellType: .single),
+        TodayResult(categoty: "Holidays", title: "Travel on a Budget", image: UIImage(named: "travel")!, description: "Find out all you need to need to know on how to travel without packing everything!", backgroundColor: .systemYellow, cellType: .single)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         collectionView.backgroundColor = .systemGray6
-        collectionView.register(TodayCell.self, forCellWithReuseIdentifier: todayID)
+        collectionView.register(TodayCell.self, forCellWithReuseIdentifier: TodayResult.CellType.single.rawValue)
+        collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayResult.CellType.multiple.rawValue)
     }
     
     
@@ -114,14 +119,16 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: todayID, for: indexPath) as! TodayCell
+        
+        let cellId = items[indexPath.item].cellType.rawValue
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseTodayCell
         cell.todayItem = items[indexPath.item]
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 64, height: 450)
+        return .init(width: view.frame.width - 64, height: 500)
     }
     
     
