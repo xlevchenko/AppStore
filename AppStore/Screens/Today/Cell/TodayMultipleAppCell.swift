@@ -19,11 +19,10 @@ class TodayMultipleAppCell: BaseTodayCell {
     let categoryLabel = TitleLable(text: "", textAlignment: .left, fontSize: 22 )
     let titleLabel = TitleLable(text: "", textAlignment: .left, fontSize: 28)
 
-    let multipleAppsController = UIViewController()
+    let multipleAppsController = TodayMultipleController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        multipleAppsController.view.backgroundColor = .systemPink
         backgroundColor = .white
         layer.cornerRadius = 16
         titleLabel.numberOfLines = 2
