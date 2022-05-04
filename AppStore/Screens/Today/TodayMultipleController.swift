@@ -46,6 +46,14 @@ class TodayMultipleController: BaseListViewController, UICollectionViewDelegateF
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 64)
+        let height: CGFloat = (view.frame.height - 3 * spacing) / 4
+        
+        return .init(width: view.frame.width, height: height)
+    }
+    
+    fileprivate let spacing: CGFloat = 16
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return spacing
     }
 }

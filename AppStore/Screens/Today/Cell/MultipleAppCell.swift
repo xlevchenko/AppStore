@@ -22,6 +22,11 @@ class MultipleAppCell: UICollectionViewCell {
     let companyLable    = SecondaryTitleLable(text: "Company name", fontSize: 16)
     let getButton       = GetButton(type: .system)
     
+    let separartorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.3, alpha: 0.3)
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,6 +51,9 @@ class MultipleAppCell: UICollectionViewCell {
         
         addSubview(stackView)
         stackView.fillSuperview()
+        
+        addSubview(separartorView)
+        separartorView.anchor(top: nil, leading: nameLable.leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: -8, right: 0), size: .init(width: 0, height: 0.5))
     }
     
     
