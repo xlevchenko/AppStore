@@ -14,6 +14,7 @@ class MultipleAppCell: UICollectionViewCell {
             nameLable.text = appResult.name
             companyLable.text = appResult.artistName
             imageView.sd_setImage(with: URL(string: appResult.artworkUrl100))
+             
         }
     }
     

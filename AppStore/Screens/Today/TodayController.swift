@@ -19,10 +19,11 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     var widthConstraint: NSLayoutConstraint?
     var heightConstraint: NSLayoutConstraint?
     
-    var items = [
-        TodayResult(categoty: "THE DAILY LIST", title: "Test-Drive These CarPlay App", image: UIImage(named: "angri")!, description: "", backgroundColor: .white, cellType: .multiple),
-        TodayResult(categoty: "Game", title: "Angry Birds", image: UIImage(named: "angri")!, description: "Angry Birds is a 2009 casual puzzle video game developed by Rovio Entertainment.", backgroundColor: .white, cellType: .single),
-        TodayResult(categoty: "Holidays", title: "Travel on a Budget", image: UIImage(named: "travel")!, description: "Find out all you need to need to know on how to travel without packing everything!", backgroundColor: .systemYellow, cellType: .single)]
+    let activityIndicatorView = ActivityIndicatorView(frame: .zero)
+
+    var items = [TodayResult]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,50 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         collectionView.backgroundColor = .systemGray6
         collectionView.register(TodayCell.self, forCellWithReuseIdentifier: TodayResult.CellType.single.rawValue)
         collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayResult.CellType.multiple.rawValue)
+        configureActivityIndicator()
+        fetchData()
     }
     
+    
+    func fetchData() {
+        let dispatchGroup = DispatchGroup()
+        
+        var appTopFreeResult: AppsResult?
+        var appTopPaidResult: AppsResult?
+        
+        dispatchGroup.enter()
+        NetworkManager.shared.fetchTopFree { appResult, error in
+            //make shure you check you error
+            appTopFreeResult = appResult
+            dispatchGroup.leave()
+            
+        }
+        dispatchGroup.enter()
+        NetworkManager.shared.fetchTopPaid { appResult, error in
+            appTopPaidResult = appResult
+            dispatchGroup.leave()
+        }
+        
+        
+        //completion block
+        dispatchGroup.notify(queue: .main) {
+            //I'll have access to top grossing and games somehow
+            self.activityIndicatorView.stopAnimating()
+            
+            self.items = [
+                TodayResult(categoty: "THE DAILY LIST", title: appTopFreeResult?.feed.title ?? "", image: UIImage(named: "angri")!, description: "", backgroundColor: .white, cellType: .multiple, app: appTopFreeResult?.feed.results ?? []),
+                
+                TodayResult(categoty: "Game", title: "Angry Birds", image: UIImage(named: "angri")!, description: "Angry Birds is a 2009 casual puzzle video game developed by Rovio Entertainment.", backgroundColor: .white, cellType: .single, app: []),
+                
+                TodayResult(categoty: "THE DAILY LIST", title: appTopPaidResult?.feed.title ?? "", image: UIImage(named: "angri")!, description: "", backgroundColor: .white, cellType: .multiple, app: appTopPaidResult?.feed.results ?? []),
+                
+                TodayResult(categoty: "Holidays", title: "Travel on a Budget", image: UIImage(named: "travel")!, description: "Find out all you need to need to know on how to travel without packing everything!", backgroundColor: .systemYellow, cellType: .single, app: [])
+            ]
+            
+            self.collectionView.reloadData()
+        }
+    }
+
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -139,5 +182,10 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .init(top: 32, left: 0, bottom: 32, right: 0)
+    }
+    
+    func configureActivityIndicator() {
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.fillSuperview()
     }
 }

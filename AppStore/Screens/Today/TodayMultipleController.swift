@@ -17,7 +17,7 @@ class TodayMultipleController: BaseListViewController, UICollectionViewDelegateF
         super.viewDidLoad()
         collectionView.register(MultipleAppCell.self, forCellWithReuseIdentifier: multipleID)
         collectionView.isScrollEnabled = false
-        fetchData()
+        //fetchData()
     }
     
     
@@ -28,7 +28,6 @@ class TodayMultipleController: BaseListViewController, UICollectionViewDelegateF
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
-            
         }
     }
     

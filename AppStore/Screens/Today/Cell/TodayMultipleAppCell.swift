@@ -13,6 +13,8 @@ class TodayMultipleAppCell: BaseTodayCell {
         didSet {
             categoryLabel.text = todayItem.categoty
             titleLabel.text = todayItem.title
+            multipleAppsController.results = todayItem.app
+            multipleAppsController.collectionView.reloadData()
         }
     }
     
