@@ -78,6 +78,15 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        if items[indexPath.item].cellType == .multiple {
+            let fullController = TodayMultipleController(mode: .fullscreen)
+            fullController.results = self.items[indexPath.item].app
+            fullController.modalPresentationStyle = .fullScreen
+            present(fullController, animated: true)
+            return
+        }
+        
+        
         let fullScreenController = FullScreenController()
         fullScreenController.todayItem = items[indexPath.row]
         fullScreenController.dismissHandler = {
