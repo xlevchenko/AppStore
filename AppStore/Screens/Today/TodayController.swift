@@ -24,7 +24,6 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     var items = [TodayResult]()
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
@@ -35,6 +34,10 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         fetchData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.superview?.setNeedsLayout()
+    }
     
     func fetchData() {
         let dispatchGroup = DispatchGroup()
@@ -80,9 +83,10 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         
         if items[indexPath.item].cellType == .multiple {
             let fullController = TodayMultipleController(mode: .fullscreen)
-            fullController.results = self.items[indexPath.item].app
-            fullController.modalPresentationStyle = .fullScreen
-            present(fullController, animated: true)
+            fullController.apps = self.items[indexPath.item].app
+            //fullController.modalPresentationStyle = .fullScreen
+            //present(UINavigationController(rootViewController: fullController), animated: true)
+            navigationController?.pushViewController(fullController, animated: true)
             return
         }
         
