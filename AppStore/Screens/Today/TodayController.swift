@@ -84,9 +84,9 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         if items[indexPath.item].cellType == .multiple {
             let fullController = TodayMultipleController(mode: .fullscreen)
             fullController.apps = self.items[indexPath.item].app
-            //fullController.modalPresentationStyle = .fullScreen
-            //present(UINavigationController(rootViewController: fullController), animated: true)
-            navigationController?.pushViewController(fullController, animated: true)
+            let navigationController = BackEnabledNavigationController(rootViewController: fullController)
+            navigationController.modalPresentationStyle = .fullScreen
+            present(navigationController, animated: true)
             return
         }
         
@@ -179,7 +179,28 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         let cellId = items[indexPath.item].cellType.rawValue
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseTodayCell
         cell.todayItem = items[indexPath.item]
+        
+        (cell as? TodayMultipleAppCell)?.multipleAppsController.collectionView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
         return cell
+    }
+    
+    
+    @objc fileprivate func handleMultipleAppsTap(gesture: UIGestureRecognizer) {
+        let collectionView = gesture.view
+        
+        //figure out which cell were clicking into
+        var superview = collectionView?.superview
+        
+        while superview != nil {
+            if let cell = superview as? TodayMultipleAppCell {
+                guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
+                
+                let apps = self.items[indexPath.item].app
+                let fullController = TodayMultipleController(mode: .fullscreen)
+                present(fullController, animated: true)
+            }
+            superview = superview?.superview
+        }
     }
     
     

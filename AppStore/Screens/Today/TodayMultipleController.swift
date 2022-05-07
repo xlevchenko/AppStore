@@ -20,7 +20,8 @@ class TodayMultipleController: BaseListViewController, UICollectionViewDelegateF
         super.viewDidLoad()
 
         if mode == .fullscreen {
-            configureButtom()            
+            configureButtom()
+            navigationController?.isNavigationBarHidden = true
         } else {
             collectionView.isScrollEnabled = false
         }
