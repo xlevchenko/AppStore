@@ -180,7 +180,7 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! BaseTodayCell
         cell.todayItem = items[indexPath.item]
         
-        (cell as? TodayMultipleAppCell)?.multipleAppsController.collectionView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
+        (cell as? TodayMultipleAppCell)?.multipleAppsController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleMultipleAppsTap)))
         return cell
     }
     
@@ -197,7 +197,10 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
                 
                 let apps = self.items[indexPath.item].app
                 let fullController = TodayMultipleController(mode: .fullscreen)
-                present(fullController, animated: true)
+                fullController.apps = apps
+                let navigationController = BackEnabledNavigationController(rootViewController: fullController)
+                navigationController.modalPresentationStyle = .fullScreen
+                present(navigationController, animated: true)
             }
             superview = superview?.superview
         }

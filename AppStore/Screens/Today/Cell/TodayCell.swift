@@ -16,6 +16,7 @@ class TodayCell: BaseTodayCell {
             imageView.image = todayItem.image
             descriptionLabel.text = todayItem.description
             backgroundColor = todayItem.backgroundColor
+            backgroundView?.backgroundColor = todayItem.backgroundColor
             
         }
     }
@@ -29,7 +30,7 @@ class TodayCell: BaseTodayCell {
         super.init(frame: frame)
         backgroundColor = .white
         layer.cornerRadius = 16
-        clipsToBounds = true
+        //clipsToBounds = true
         descriptionLabel.text = "Angry Birds is a 2009 casual puzzle video game developed by Rovio Entertainment."
         descriptionLabel.font = .systemFont(ofSize: 16)
         descriptionLabel.numberOfLines = 3
@@ -46,6 +47,7 @@ class TodayCell: BaseTodayCell {
     func configure() {
         addSubview(imageView)
         imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
         
         let imageContainerView = UIView()
         imageContainerView.addSubview(imageView)

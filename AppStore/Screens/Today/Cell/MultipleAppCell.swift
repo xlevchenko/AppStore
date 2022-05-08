@@ -56,6 +56,4 @@ class MultipleAppCell: UICollectionViewCell {
         addSubview(separartorView)
         separartorView.anchor(top: nil, leading: nameLable.leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: -8, right: 0), size: .init(width: 0, height: 0.5))
     }
-    
-    
 }
