@@ -20,7 +20,7 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     var heightConstraint: NSLayoutConstraint?
     
     let activityIndicatorView = ActivityIndicatorView(frame: .zero)
-
+    
     var items = [TodayResult]()
     
     
@@ -77,57 +77,72 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
             self.collectionView.reloadData()
         }
     }
-
+    
+    
+    fileprivate func showDailyListFullScreen(_ indexPath: IndexPath) {
+        let fullController = TodayMultipleController(mode: .fullscreen)
+        fullController.apps = self.items[indexPath.item].app
+        let navigationController = BackEnabledNavigationController(rootViewController: fullController)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if items[indexPath.item].cellType == .multiple {
-            let fullController = TodayMultipleController(mode: .fullscreen)
-            fullController.apps = self.items[indexPath.item].app
-            let navigationController = BackEnabledNavigationController(rootViewController: fullController)
-            navigationController.modalPresentationStyle = .fullScreen
-            present(navigationController, animated: true)
-            return
+        switch items[indexPath.item].cellType {
+        case .multiple:
+            showDailyListFullScreen(indexPath)
+        case .single:
+            showSingleAppFullScreen(indexPath: indexPath)
         }
-        
-        
+    }
+    
+    
+    fileprivate func setupSingleAppFullscreenController(_ indexPath: IndexPath) {
         let fullScreenController = FullScreenController()
         fullScreenController.todayItem = items[indexPath.row]
         fullScreenController.dismissHandler = {
             self.handleRemoveView()
         }
+        fullScreenController.view.layer.cornerRadius = 16
+        self.fullScreenController = fullScreenController
+    }
+    
+    
+    fileprivate func setupStartingCellFrame(_ indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
+        //absolute coordindates of cell
+        guard let startiningFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
+        self.startingFrame = startiningFrame
+    }
+    
+    
+    fileprivate func setupAppFullscreenStartingPosition(_ indexPath: IndexPath) {
         let fullscreenView = fullScreenController.view!
         fullscreenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveView)))
         
         view.addSubview(fullscreenView)
         addChild(fullScreenController)
-        self.fullScreenController = fullScreenController
-        
         self.collectionView.isUserInteractionEnabled = false
         
-        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        setupStartingCellFrame(indexPath)
+        guard let startingFrame = self.startingFrame else { return }
         
-        //absolute coordindates of cell
-        guard let startiningFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
-        self.startiningFrame = startiningFrame
-        
-        fullscreenView.translatesAutoresizingMaskIntoConstraints = false
-        topConstraint = fullscreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startiningFrame.origin.y)
-        leadingConstraint = fullscreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startiningFrame.origin.x)
-        widthConstraint = fullscreenView.widthAnchor.constraint(equalToConstant: startiningFrame.width)
-        heightConstraint = fullscreenView.heightAnchor.constraint(equalToConstant: startiningFrame.height)
-        [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach ({ $0?.isActive = true })
+        self.anchoredConstraints = fullscreenView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: startingFrame.origin.y, left: startingFrame.origin.x, bottom: 0, right: 0), size: .init(width: startingFrame.width, height: startingFrame.height))
         
         self.view.layoutIfNeeded()
-        fullscreenView.layer.cornerRadius = 16
-        
+    }
+    
+    var anchoredConstraints: AnchoredConstraints?
+    
+    fileprivate func beginAnimationAppFullscreen() {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-           
-            self.topConstraint?.constant = 0
-            self.leadingConstraint?.constant = 0
-            self.widthConstraint?.constant = self.view.frame.width
-            self.heightConstraint?.constant = self.view.frame.height
+            
+            self.anchoredConstraints?.top?.constant = 0
+            self.anchoredConstraints?.leading?.constant = 0
+            self.anchoredConstraints?.width?.constant = self.view.frame.width
+            self.anchoredConstraints?.height?.constant = self.view.frame.height
             
             self.view.layoutIfNeeded() // starting animation
             self.tabBarController?.tabBar.frame.origin.y += 100
@@ -139,23 +154,34 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
     }
     
     
-    var startiningFrame: CGRect?
+    fileprivate func showSingleAppFullScreen(indexPath: IndexPath) {
+        //#1 setup single fullcreen controller
+        setupSingleAppFullscreenController(indexPath)
     
+        //#2 setup fullcreen in its staring position
+        setupAppFullscreenStartingPosition(indexPath)
+        
+        //#3 begin the fullscreen animation
+        beginAnimationAppFullscreen()
+    }
+    
+    
+    var startingFrame: CGRect?
     
     @objc func handleRemoveView() {
         //access staringFrame
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-
-            guard let startiningFrame = self.startiningFrame else { return }
-            self.topConstraint?.constant = startiningFrame.origin.y
-            self.leadingConstraint?.constant = startiningFrame.origin.x
-            self.widthConstraint?.constant = startiningFrame.width
-            self.heightConstraint?.constant = startiningFrame.height
+            
+            guard let startiningFrame = self.startingFrame else { return }
+            self.anchoredConstraints?.top?.constant = startiningFrame.origin.y
+            self.anchoredConstraints?.leading?.constant = startiningFrame.origin.x
+            self.anchoredConstraints?.width?.constant = startiningFrame.width
+            self.anchoredConstraints?.height?.constant = startiningFrame.height
             self.view.layoutIfNeeded() // finish animation
             
             self.fullScreenController.tableView.contentOffset = .zero
             self.tabBarController?.tabBar.frame.origin.y -= 100
-        
+            
             guard let cell = self.fullScreenController.tableView.cellForRow(at: [0, 0]) as? FullScreenHeaderCell else { return }
             cell.todayCell.topConstraint.constant = 24
             cell.layoutIfNeeded()
@@ -164,7 +190,6 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
             self.fullScreenController.view.removeFromSuperview()
             self.fullScreenController.removeFromParent()
             self.collectionView.isUserInteractionEnabled = true
-            
         })
     }
     
