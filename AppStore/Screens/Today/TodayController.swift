@@ -117,7 +117,7 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         fullScreenController.view.addGestureRecognizer(gesture)
         
         // #2 Add a blue effect view
-        
+         
         
         
         // #3 Not to interfere with  our UITableView scrolling
@@ -128,17 +128,35 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
         return true
     }
     
+    var fullScreenBeginOffset: CGFloat = 0
     
     @objc fileprivate func handleDrag(gesture: UIPanGestureRecognizer) {
-        let translationY = gesture.translation(in: fullScreenController.view).y
+        if gesture.state == .began {
+            fullScreenBeginOffset = fullScreenController.tableView.contentOffset.y
+        }
         
+        if fullScreenController.tableView.contentOffset.y > 0 {
+            return
+        }
+        
+        let translationY = gesture.translation(in: fullScreenController.view).y
+
         if gesture.state == .changed {
-            let scele = 1 - translationY / 1000
-            let transform: CGAffineTransform = .init(scaleX: scele, y: scele)
-            self.fullScreenController.view.transform = transform
+            if translationY > 0 {
+                let trueOffset = translationY - fullScreenBeginOffset
+                var scele = 1 - trueOffset / 1000
+                
+                scele = min(1, scele)
+                scele = max(0.5, scele)
+                
+                let transform: CGAffineTransform = .init(scaleX: scele, y: scele)
+                self.fullScreenController.view.transform = transform
+            }
             
         } else if gesture.state == .ended {
-            handleAppFullScreenDismissal()
+            if translationY > 0 {
+                handleAppFullScreenDismissal()
+            }
         }
     }
     
@@ -223,6 +241,7 @@ class TodayController: BaseListViewController, UICollectionViewDelegateFlowLayou
             self.tabBarController?.tabBar.frame.origin.y -= 100
             
             guard let cell = self.fullScreenController.tableView.cellForRow(at: [0, 0]) as? FullScreenHeaderCell else { return }
+            cell.closeButton.alpha = 0
             cell.todayCell.topConstraint.constant = 24
             cell.layoutIfNeeded()
             

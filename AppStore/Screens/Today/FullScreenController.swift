@@ -19,6 +19,12 @@ class FullScreenController: UITableViewController {
         tableView.contentInsetAdjustmentBehavior = .never
     }
     
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            scrollView.isScrollEnabled = false
+            scrollView.isScrollEnabled = true
+        }
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
@@ -32,6 +38,7 @@ class FullScreenController: UITableViewController {
             headerCell.todayCell.todayItem = todayItem
             headerCell.todayCell.layer.cornerRadius = 0
             headerCell.clipsToBounds = true
+            headerCell.todayCell.backgroundView = nil
             return headerCell
         }
         let cell = FullScreenCell()
